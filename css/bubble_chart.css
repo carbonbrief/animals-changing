@@ -1,0 +1,177 @@
+a, a:visited, a:active {
+  color: #8dccd3;
+}
+
+.container {
+  width: 87%;
+  margin-left: 5%;
+  margin-right: 8%; 
+  /* larger right margin to allow more space for tooltip */
+}
+
+.button {
+  min-width: 130px;
+  padding: 4px 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+  border: 1px solid #e0e0e0;
+  text-decoration: none;
+}
+
+.button.active {
+  background: #000;
+  color: #fff;
+}
+
+
+#bubble-chart {
+  width: 50%;
+  height: 800px;
+  clear: both;
+  margin-bottom: 0px;
+}
+
+#toolbar {
+  margin-top: 30px;
+  opacity: 0;
+}
+
+.year {
+  font-size: 21px;
+  fill: #aaa;
+  cursor: default;
+}
+
+.tooltip {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+  -moz-border-radius:5px;
+	border-radius: 5px;
+  border: 2px solid #000;
+  background: #fff;
+	opacity: .9;
+  color: black;
+	padding: 10px;
+	max-width: 300px;
+	font-size: 12px;
+	z-index: 10;
+}
+
+.tooltip .title {
+  font-size: 13px;
+}
+
+.tooltip span {
+  font-family: PT Sans;
+}
+
+.tooltip .name {
+  font-weight:bold;
+}
+
+.footer {
+  text-align: left;
+  vertical-align: top;
+  height: 80px;
+  margin-top: 40px;
+}
+
+.footer > div { 
+  display: table-cell; 
+  height: 80px;
+  padding-right: 20px;
+}
+
+#wri-logo {
+  z-index: 9000;
+  height: 80px;
+  width: 150px;
+  background-image:url(wri-logo.png);
+  image-rendering: crisp-edges;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+}
+
+#cb-logo {
+  z-index: 9000;
+  height: 80px;
+  width: 150px;
+  background-image:url(cb-logo.png);
+  image-rendering: crisp-edges;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+}
+
+#credit {
+  height: 80px;
+}
+
+p {
+  font-family: PT Sans;
+}
+
+strong {
+  font-family: PT Sans;
+  font-weight: bold;
+}
+
+h1 {
+  font-family: PT Sans Narrow;
+  font-weight: normal;
+  font-size: 30px;
+}
+
+h3 {
+  font-family: PT Sans Narrow;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+a {
+  font-family: PT Sans;
+}
+
+/* make responsive */
+
+@media (max-width: 1300px) {
+  #bubble-chart {
+    height: 640px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #bubble-chart {
+    height: 600px;
+  }
+}
+
+@media (max-width: 1100px) {
+  #bubble-chart {
+    height: 580px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #bubble-chart {
+    height: 550px;
+  }
+}
+
+@media (max-width: 850px) {
+  #bubble-chart {
+    height: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer > div { 
+    display: inline-block; 
+  }
+  #bubble-chart {
+    height: 450px;
+  }
+}
