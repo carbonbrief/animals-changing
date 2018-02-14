@@ -123,6 +123,7 @@ function bubbleChart() {
         continent: d.continent,
         group: d.class,         // will determine colour
         year: d.position,
+        image: d.img,       // will determine icon
         peak_year: d.peak_year,
         x: Math.random() * 900,
         y: Math.random() * 800
@@ -178,6 +179,17 @@ function bubbleChart() {
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
+      
+    // works but in wrong position
+
+    var silhouettes = bubbles.enter().append('svg:image')
+        .attr("xlink:href",  function(d) { return "img/" + d.image})
+        .attr("x", function(d) { return d.x -25;})
+        .attr("y", function(d) { return d.y -25;})
+        .attr("height", 50)
+        .attr("width", 50);
+
+    console.log(function(d) { return d.img});
 
     // @v4 Merge the original empty selection and the enter selection
     bubbles = bubbles.merge(bubblesE);
