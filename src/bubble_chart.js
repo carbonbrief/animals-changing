@@ -166,6 +166,28 @@ function bubbleChart() {
     bubbles = svg.selectAll('.bubble')
       .data(nodes, function (d) { return d.id; });
 
+    // defs example
+
+    var defs = svg.append("defs");
+
+    defs.selectAll(null)
+      .data(nodes)
+      .enter()
+      .append("pattern")
+      .attr("id", function(d){
+          return d.image
+      })//set the id here
+      .attr("height", "100%")
+      .attr("width", "100%")
+      .attr("patternContentUnits", "objectBoundingBox")
+      .append("image")
+      .attr("height", 1)
+      .attr("width", 1)
+      .attr("preserveAspectRatio", "none")
+      .attr("xlink:href", function(d) {
+          return "img/" + d.image + ".jpg"
+      });
+
     // Create new circle elements each with class `bubble`.
     // There will be one circle.bubble for each object in the nodes array.
     // Initially, their radius (r attribute) will be 0.
@@ -173,17 +195,21 @@ function bubbleChart() {
     //  enter selection to apply our transtition to below.
     var bubblesE = bubbles.enter().append('circle')
       .classed('bubble', true)
-      .attr('id', d => d.image)
+      .style("fill", function(d) { return "url(#" + d.image + ")"})
+      //.attr('id', d => d.image)
       .attr('r', 0)  // initial radius zero to allow transition
-      .attr('fill', function (d) { return fillColor(d.group); })
+      //.attr('fill', function (d) { return fillColor(d.group); })
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
-      // after pudding's example unsure why this doesn't work
+      // after pudding's example. think this doesn't work because there's no set width
       //.style("background-image",function(d) {
       //  return "url(img/" + d.image + ".svg)";
       //})
+      
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
+
+    
       
     // works but in wrong position? Perhaps not working properly as v3
 
@@ -204,21 +230,21 @@ function bubbleChart() {
       .duration(2000)
       .attr('r', function (d) { return d.radius; });
 
-    // nau example
+    // nau example. Perhaps not working properly as no group to add to?
 
-    bubbles.append('clipPath')
-      .attr('id', d => `clip-${d.image}`)
-      .append('use')
-      .attr('xlink:href', d => `#${d.image}`);
+    // bubbles.append('clipPath')
+    //   .attr('id', d => `clip-${d.image}`)
+    //   .append('use')
+    //   .attr('xlink:href', d => `#${d.image}`);
 
-    var addImages = bubbles.append('image')
-      .classed('bubbles-icon', true)
-      .attr('clip-path', d => `url(#clip-${d.id})`)
-      .attr('xlink:href', d => "img/" + d.image + ".jpg")
-      .attr('x', d => -d.radius * 0.7)
-      .attr('y', d => -d.radius * 0.7)
-      .attr('height', d => d.radius * 2 * 0.7)
-      .attr('width', d => d.radius * 2 * 0.7);
+    // var addImages = bubbles.append('image')
+    //   .classed('bubbles-icon', true)
+    //   .attr('clip-path', d => `url(#clip-${d.image})`)
+    //   .attr('xlink:href', d => "img/" + d.image + ".jpg")
+    //   .attr('x', d => -d.radius * 0.7)
+    //   .attr('y', d => -d.radius * 0.7)
+    //   .attr('height', d => d.radius * 2 * 0.7)
+    //   .attr('width', d => d.radius * 2 * 0.7);
 
     // Set the simulation's nodes to our newly created nodes array.
     // @v4 Once we set the nodes, the simulation will start running automatically!
