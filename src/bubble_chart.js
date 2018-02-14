@@ -185,7 +185,7 @@ function bubbleChart() {
       .attr("width", 1)
       .attr("preserveAspectRatio", "none")
       .attr("xlink:href", function(d) {
-          return "img/" + d.image + ".jpg"
+          return "img/" + d.image + ".svg"
       });
 
     // Create new circle elements each with class `bubble`.
@@ -196,29 +196,12 @@ function bubbleChart() {
     var bubblesE = bubbles.enter().append('circle')
       .classed('bubble', true)
       .style("fill", function(d) { return "url(#" + d.image + ")"})
-      //.attr('id', d => d.image)
       .attr('r', 0)  // initial radius zero to allow transition
       //.attr('fill', function (d) { return fillColor(d.group); })
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
-      // after pudding's example. think this doesn't work because there's no set width
-      //.style("background-image",function(d) {
-      //  return "url(img/" + d.image + ".svg)";
-      //})
-      
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
-
-    
-      
-    // works but in wrong position? Perhaps not working properly as v3
-
-    // var silhouettes = bubbles.enter().append('svg:image')
-    //     .attr("xlink:href",  function(d) { return "img/" + d.image + ".svg"})
-    //     .attr("x", function(d) { return d.x -25;})
-    //     .attr("y", function(d) { return d.y -25;})
-    //     .attr("height", 50)
-    //     .attr("width", 50);
 
 
     // @v4 Merge the original empty selection and the enter selection
@@ -229,22 +212,6 @@ function bubbleChart() {
     bubbles.transition()
       .duration(2000)
       .attr('r', function (d) { return d.radius; });
-
-    // nau example. Perhaps not working properly as no group to add to?
-
-    // bubbles.append('clipPath')
-    //   .attr('id', d => `clip-${d.image}`)
-    //   .append('use')
-    //   .attr('xlink:href', d => `#${d.image}`);
-
-    // var addImages = bubbles.append('image')
-    //   .classed('bubbles-icon', true)
-    //   .attr('clip-path', d => `url(#clip-${d.image})`)
-    //   .attr('xlink:href', d => "img/" + d.image + ".jpg")
-    //   .attr('x', d => -d.radius * 0.7)
-    //   .attr('y', d => -d.radius * 0.7)
-    //   .attr('height', d => d.radius * 2 * 0.7)
-    //   .attr('width', d => d.radius * 2 * 0.7);
 
     // Set the simulation's nodes to our newly created nodes array.
     // @v4 Once we set the nodes, the simulation will start running automatically!
