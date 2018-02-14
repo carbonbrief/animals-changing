@@ -122,7 +122,7 @@ function bubbleChart() {
         unfccc: d.unfccc,
         continent: d.continent,
         group: d.class,         // will determine colour
-        year: d.position,
+        position: d.position,
         image: d.img,       // will determine icon
         peak_year: d.peak_year,
         x: Math.random() * 900,
@@ -200,8 +200,10 @@ function bubbleChart() {
       //.attr('fill', function (d) { return fillColor(d.group); })
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
-      .on('mouseover', showDetail)
-      .on('mouseout', hideDetail);
+      .on('mouseover', mouseover)
+      .on('mouseout', mouseout)
+      .on('mouseclick', showDetail);
+      //.on('mouseout', hideDetail);
 
 
     // @v4 Merge the original empty selection and the enter selection
@@ -239,7 +241,7 @@ function bubbleChart() {
    * x force.
    */
   function nodeYearPos(d) {
-    return yearCenters[d.year].y;
+    return yearCenters[d.position].y;
   }
 
 
@@ -299,6 +301,29 @@ function bubbleChart() {
       .attr('y', function (d) { return yearsTitleY[d]; })
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
+  }
+
+  function mouseover(d) {
+      d3.select(this).transition()
+      .duration(750)
+      // doesn't work without the filter either, so problem isn't necessarily the filter
+      //.attr("r", function(d) {d.radius*2});
+      .attr("r", function(d){ 
+        if (d.position == 1 | 2) {
+          return d.radius*2
+        } 
+        else if (d.position == 3 | 4){
+          return d.radius/2
+        }
+      });
+      console.log("mouseover event");
+  }
+
+  function mouseout() {
+    d3.select(this).transition()
+    .duration(750)
+    .attr("r", function(d){return d.radius});
+    console.log("mouse event end");
   }
 
 
