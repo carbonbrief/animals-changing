@@ -166,7 +166,7 @@ function bubbleChart() {
     bubbles = svg.selectAll('.bubble')
       .data(nodes, function (d) { return d.id; });
 
-    // defs example
+    // add different silhouette patterns
 
     var defs = svg.append("defs");
 
@@ -201,8 +201,8 @@ function bubbleChart() {
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
       .on('mouseover', mouseover)
-      .on('mouseout', mouseout)
-      .on('mouseclick', showDetail);
+      .on('mouseout', mouseout);
+      // .on('click', showDetail);
       //.on('mouseout', hideDetail);
 
 
@@ -303,40 +303,31 @@ function bubbleChart() {
       .text(function (d) { return d; });
   }
 
+  /*
+   * Function called on mouseover to execute various behaviours
+   */
+
   function mouseover(d) {
-      d3.select(this).transition()
-      .duration(1000)
-      // doesn't work without the filter either, so problem isn't necessarily the filter
-      //.attr("r", function(d) {d.radius*2});
+
+    // change size of bubbles on mouseover
+    d3.select(this).transition()
+      .duration(750)
       .attr("r", function(d){ 
         if (d.position > 2) {
-          return d.radius*1.5;
+          return d.radius*1.3;
         } 
         else {
           return d.radius*0.75;
-          console.log("shrinking")
         }
       });
-      console.log("mouseover event");
-  }
+    
+    // change opacity of stroke on mouseover
 
-  function mouseout() {
-    d3.select(this).transition()
-    .duration(1000)
-    .attr("r", function(d){return d.radius});
-    console.log("mouse event end");
-  }
-
-
-  /*
-   * Function called on mouseover to display the
-   * details of a bubble in the tooltip.
-   */
-  function showDetail(d) {
-    // change outline to indicate hover state.
     d3.select(this)
     .attr('stroke', 'black')
     .attr('opacity', 0.7);
+
+    // show tooltip on mouseover
 
     var content = '<h3>' +
                   d.name +
@@ -349,18 +340,31 @@ function bubbleChart() {
                   ' tonnes CO2E</span>';
 
     tooltip.showTooltip(content, d3.event);
+
+    console.log("mouseover event");
+
   }
 
   /*
-   * Hides tooltip and resets styling on mouse mouseOut
+   * Function called on mouseout to reset various features
    */
-  function hideDetail(d) {
-    // reset outline
+
+  function mouseout(d) {
+
+    // reset bubble size
+    d3.select(this).transition()
+      .duration(750)
+      .attr("r", function(d){return d.radius});
+
+    // reset stroke outline
     d3.select(this)
       .attr('stroke', d3.rgb(fillColor(d.group)).darker())
       .attr('opacity', 1);
 
+    // hide tooltip
     tooltip.hideTooltip();
+
+    console.log("mouse event end");
   }
 
   /*
