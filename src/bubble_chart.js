@@ -188,6 +188,29 @@ function bubbleChart() {
           return "img/" + d.image + ".svg"
       });
 
+    // add darker silhouette pattern for hover
+
+    var defs2 = svg.append("defs");
+
+    defs2.selectAll(null)
+      .data(nodes)
+      .enter()
+      .append("pattern")
+      .attr("id", function(d){
+          return d.image + "2"
+      })//set the id here
+      .attr("height", "100%")
+      .attr("width", "100%")
+      .attr("patternContentUnits", "objectBoundingBox")
+      .append("image")
+      .attr("height", 1)
+      .attr("width", 1)
+      .attr("preserveAspectRatio", "none")
+      .attr("xlink:href", function(d) {
+          return "img/" + d.image + "2.svg"
+      });
+
+
     // Create new circle elements each with class `bubble`.
     // There will be one circle.bubble for each object in the nodes array.
     // Initially, their radius (r attribute) will be 0.
@@ -325,6 +348,7 @@ function bubbleChart() {
 
     d3.select(this)
     .attr('stroke', d3.rgb(fillColor(d.change)).darker())
+    .style("fill", function(d) { return "url(#" + d.image + "2)"})
     .attr('opacity', 1);
 
     // show tooltip on mouseover
@@ -359,6 +383,7 @@ function bubbleChart() {
     // reset stroke outline
     d3.select(this)
       .attr('stroke', d3.rgb(fillColor(d.change)))
+      .style("fill", function(d) { return "url(#" + d.image + ")"})
       .attr('opacity', 1);
 
     // hide tooltip
