@@ -305,15 +305,16 @@ function bubbleChart() {
 
   function mouseover(d) {
       d3.select(this).transition()
-      .duration(750)
+      .duration(1000)
       // doesn't work without the filter either, so problem isn't necessarily the filter
       //.attr("r", function(d) {d.radius*2});
       .attr("r", function(d){ 
-        if (d.position == 1 | 2) {
-          return d.radius*2
+        if (d.position > 2) {
+          return d.radius*1.5;
         } 
-        else if (d.position == 3 | 4){
-          return d.radius/2
+        else {
+          return d.radius*0.75;
+          console.log("shrinking")
         }
       });
       console.log("mouseover event");
@@ -321,7 +322,7 @@ function bubbleChart() {
 
   function mouseout() {
     d3.select(this).transition()
-    .duration(750)
+    .duration(1000)
     .attr("r", function(d){return d.radius});
     console.log("mouse event end");
   }
