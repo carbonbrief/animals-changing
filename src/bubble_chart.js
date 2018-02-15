@@ -324,8 +324,8 @@ function bubbleChart() {
     // change opacity of stroke on mouseover
 
     d3.select(this)
-    .attr('stroke', 'black')
-    .attr('opacity', 0.7);
+    .attr('stroke', d3.rgb(fillColor(d.change)).darker())
+    .attr('opacity', 1);
 
     // show tooltip on mouseover
 
@@ -358,7 +358,7 @@ function bubbleChart() {
 
     // reset stroke outline
     d3.select(this)
-      .attr('stroke', d3.rgb(fillColor(d.change)).darker())
+      .attr('stroke', d3.rgb(fillColor(d.change)))
       .attr('opacity', 1);
 
     // hide tooltip
