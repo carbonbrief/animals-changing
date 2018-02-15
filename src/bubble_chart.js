@@ -347,7 +347,12 @@ function bubbleChart() {
     // change opacity of stroke on mouseover
 
     d3.select(this)
-    .attr('stroke', d3.rgb(fillColor(d.change)).darker())
+    .attr('stroke', function (d) { 
+      if (d.change == "Growing") {
+        return "#d89b13";
+      } else {
+        return "#77395e";
+      }})
     .style("fill", function(d) { return "url(#" + d.image + "2)"})
     .attr('opacity', 1);
 
