@@ -314,10 +314,10 @@ function bubbleChart() {
       .duration(750)
       .attr("r", function(d){ 
         if (d.position > 2) {
-          return d.radius*1.3;
+          return d.radius*1.2;
         } 
         else {
-          return d.radius*0.75;
+          return d.radius*0.8;
         }
       });
     
