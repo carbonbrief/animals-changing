@@ -1,0 +1,92 @@
+/* main html elements */
+
+p {
+    font-family: PT Sans;
+  }
+  
+strong {
+font-family: PT Sans;
+font-weight: bold;
+}
+
+h1 {
+font-family: PT Sans Narrow;
+font-weight: normal;
+font-size: 30px;
+}
+
+h3 {
+font-family: PT Sans Narrow;
+font-weight: bold;
+font-size: 22px;
+margin-bottom: 5px;
+margin-top: 0px;
+}
+
+a {
+font-family: PT Sans;
+}
+
+a, a:visited, a:active {
+    color: #A14A7b;
+}
+
+/* specific html classes */
+  
+.container {
+width: 87%;
+margin-left: 5%;
+margin-right: 8%; 
+/* larger right margin to allow more space for tooltip */
+}
+
+#toolbar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    opacity: 0;
+}
+
+.button {
+min-width: 130px;
+padding: 4px 5px;
+cursor: pointer;
+text-align: center;
+font-size: 13px;
+border: 1px solid #e0e0e0;
+text-decoration: none;
+}
+
+.button.active {
+background: #333333;
+color: #fff;
+}
+
+.footer {
+    text-align: left;
+    vertical-align: top;
+    height: 80px;
+    margin-top: 40px;
+  }
+  
+.footer > div { 
+display: table-cell; 
+height: 80px;
+padding-right: 20px;
+}
+  
+#credit {
+    height: 80px;
+}
+
+
+/* Need to add this to folder */
+
+#cb-logo {
+    z-index: 9000;
+    height: 80px;
+    width: 150px;
+    background-image:url(cb-logo.png);
+    image-rendering: crisp-edges;
+    background-repeat: no-repeat;
+    vertical-align: bottom;
+  }

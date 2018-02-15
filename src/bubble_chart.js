@@ -82,8 +82,8 @@ function bubbleChart() {
 
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3.scaleOrdinal()
-    .domain(['Mammals', 'Birds', 'Plants'])
-    .range(['#ade2ea', '#999999', '#424242']);
+    .domain(['Shrinking', 'Growing'])
+    .range(['#A14A7b', '#eab42d']);
 
 
   /*
@@ -119,8 +119,8 @@ function bubbleChart() {
         radius: radiusScale(+d.studies),
         value: +d.studies,
         name: d.organism,
-        unfccc: d.unfccc,
-        continent: d.continent,
+        change: d.change,
+        location: d.location,
         group: d.class,         // will determine colour
         position: d.position,
         image: d.img,       // will determine icon
@@ -198,7 +198,7 @@ function bubbleChart() {
       .style("fill", function(d) { return "url(#" + d.image + ")"})
       .attr('r', 0)  // initial radius zero to allow transition
       //.attr('fill', function (d) { return fillColor(d.group); })
-      .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
+      .attr('stroke', function (d) { return d3.rgb(fillColor(d.change)); })
       .attr('stroke-width', 2)
       .on('mouseover', mouseover)
       .on('mouseout', mouseout);
@@ -330,18 +330,18 @@ function bubbleChart() {
     // show tooltip on mouseover
 
     var content = '<h3>' +
-                  d.name +
-                  '</h3>' +
-                  '<span class="name">Peak year: </span><span class="value">' +
-                  d.peak_year +
-                  '</span><br/>' +
-                  '<span class="name">Carbon footprint*: </span><span class="value">' +
-                  addCommas(d.value) +
-                  ' tonnes CO2E</span>';
+      d.name +
+      '</h3>' +
+      '<span class="name">Peak year: </span><span class="value">' +
+      d.peak_year +
+      '</span><br/>' +
+      '<span class="name">Carbon footprint*: </span><span class="value">' +
+      addCommas(d.value) +
+      ' tonnes CO2E</span>';
 
     tooltip.showTooltip(content, d3.event);
 
-    console.log("mouseover event");
+    // console.log("mouseover event");
 
   }
 
@@ -358,13 +358,13 @@ function bubbleChart() {
 
     // reset stroke outline
     d3.select(this)
-      .attr('stroke', d3.rgb(fillColor(d.group)).darker())
+      .attr('stroke', d3.rgb(fillColor(d.change)).darker())
       .attr('opacity', 1);
 
     // hide tooltip
     tooltip.hideTooltip();
 
-    console.log("mouse event end");
+    // console.log("mouse event end");
   }
 
   /*

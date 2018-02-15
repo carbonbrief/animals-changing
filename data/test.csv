@@ -1,4 +1,4 @@
-organism,class,location,change ,basis,position,studies,quote,evidence,year,img,link
+organism,class,location,change,basis,position,studies,quote,evidence,year,img,link
 Sharks,Fish/Chondrichthyes,"Port Jackson, Australia",Shrinking,Observation,1,1,,Study in Scientific Reports,2015,shark,https://www.nature.com/articles/srep16293
 Polar bears,Mammals,,Shrinking,Observation,1,1,"""Polar bears are shrinking because of the impact of climate change on their natural habitats, along with many other animals and plants, researchers say.""",Report in Nature Climate Change,2011,polarbear,https://www.nature.com/articles/nclimate1259
 Moose,Mammals,Moose near the southern limit of their range,Shrinking,Observation,1,2,,Study in Global Change Biology,2018,moose,http://onlinelibrary.wiley.com/doi/10.1111/gcb.14015/abstract;jsessionid=039874C5D4029C57177EBD4769B5C605.f02t03
