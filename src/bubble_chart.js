@@ -83,7 +83,7 @@ function bubbleChart() {
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3.scaleOrdinal()
     .domain(['Shrinking', 'Growing'])
-    .range(['#A14A7b', '#eab42d']);
+    .range(['#A14A7b', '#e08b1b']);
 
 
   /*
@@ -349,7 +349,7 @@ function bubbleChart() {
     d3.select(this)
     .attr('stroke', function (d) { 
       if (d.change == "Growing") {
-        return "#d89b13";
+        return "#b77408";
       } else {
         return "#77395e";
       }})
@@ -382,6 +382,8 @@ function bubbleChart() {
 
     // reset bubble size
     d3.select(this).transition()
+      // add delay to make looping bug less likely and less annoying
+      .delay(150)
       .duration(750)
       .attr("r", function(d){return d.radius});
 
