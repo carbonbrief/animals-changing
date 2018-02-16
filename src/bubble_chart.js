@@ -11,7 +11,7 @@ function bubbleChart() {
   // Constants for sizing
   // will be changing viewport so don't need to make responsive here
   var width = 830;
-  var height = 1200;
+  var height = 1050;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -40,7 +40,7 @@ function bubbleChart() {
   console.log(yearsTitleY);
 
   // @v4 strength to apply to the position forces
-  var forceStrength = 0.03;
+  var forceStrength = 0.05;
 
   // These will be set in create_nodes and create_vis
   var svg = null;
@@ -224,9 +224,30 @@ function bubbleChart() {
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.change)); })
       .attr('stroke-width', 2)
       .on('mouseover', mouseover)
-      .on('mouseout', mouseout);
+      .on('mouseout', mouseout)
+      .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
       // .on('click', showDetail);
       //.on('mouseout', hideDetail);
+
+    function dragstarted(d) {
+      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+    
+    function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+    }
+    
+    function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    } 
 
 
     // @v4 Merge the original empty selection and the enter selection

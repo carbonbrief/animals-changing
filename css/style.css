@@ -31,18 +31,25 @@ a, a:visited, a:active {
     color: #A14A7b;
 }
 
+header {
+    background-color: rgba(161, 74, 123, 0.5);
+    width: inherit;
+    padding: 20px;
+    width: 790px;
+}
+
 /* specific html classes */
   
 .container {
-width: 87%;
-margin-left: 5%;
-margin-right: 8%; 
-/* larger right margin to allow more space for tooltip */
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%; 
+    /* larger right margin to allow more space for tooltip */
 }
 
 #toolbar {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     opacity: 0;
 }
 
@@ -65,13 +72,16 @@ color: #fff;
     text-align: left;
     vertical-align: top;
     height: 80px;
-    margin-top: 40px;
-  }
+    margin-top: 0px;
+    background-color: rgba(239, 198, 48, 0.5);
+    width: 790px;
+    padding: 20px;
+}
   
 .footer > div { 
-display: table-cell; 
-height: 80px;
-padding-right: 20px;
+    display: table-cell; 
+    height: 80px;
+    padding-right: 20px;
 }
   
 #credit {
