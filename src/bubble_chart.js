@@ -10,8 +10,8 @@
 function bubbleChart() {
   // Constants for sizing
   // will be changing viewport so don't need to make responsive here
-  var width = 600;
-  var height = 800;
+  var width = 830;
+  var height = 1200;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -20,21 +20,21 @@ function bubbleChart() {
   // on which view mode is selected.
   var center = { x: width / 2, y: height / 1.9 };
 
-  var yearCenters = {
-    1: { x: width / 2, y: height / 6 * 2 },
-    2: { x: width / 2, y: height / 6 * 3 },
-    3: { x: width / 2, y: height / 6 * 4 },
-    4: { x: width / 2, y: height / 6 * 5 },
+  var nodeCenters = {
+    1: { x: width / 1.8, y: height / 5 * 1 },
+    2: { x: width / 1.8, y: height / 5 * 2 },
+    3: { x: width / 1.8, y: height / 5 * 3 },
+    4: { x: width / 1.8, y: height / 5 * 4 },
   };
 
-  console.log(yearCenters);
+  console.log(nodeCenters);
 
-  // X locations of the year titles. nb html markup doesn't work
+  // y locations of the year titles. nb html markup doesn't work
   var yearsTitleY = {
-    "Growing": height / 6 * 5,
-    "Predicted to grow": height / 6 * 4,
-    "Predicted to shrink": height / 6 * 3,
-    "Shrinking": height / 6 * 2,
+    "Growing": height / 5 * 4,
+    "Predicted to grow": height / 5 * 3,
+    "Predicted to shrink": height / 5 * 2,
+    "Shrinking": height / 5 * 1,
   };
 
   console.log(yearsTitleY);
@@ -264,7 +264,7 @@ function bubbleChart() {
    * x force.
    */
   function nodeYearPos(d) {
-    return yearCenters[d.position].y;
+    return nodeCenters[d.position].y;
   }
 
 
@@ -289,7 +289,7 @@ function bubbleChart() {
    * Sets visualization in "split by year mode".
    * The year labels are shown and the force layout
    * tick function is set to move nodes to the
-   * yearCenter of their data's year.
+   * nodeCenter of their data's year.
    */
   function splitBubbles() {
     showYearTitles();
