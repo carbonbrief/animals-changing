@@ -40,7 +40,7 @@ function bubbleChart() {
   console.log(yearsTitleY);
 
   // @v4 strength to apply to the position forces
-  var forceStrength = 0.05;
+  var forceStrength = 0.07;
 
   // These will be set in create_nodes and create_vis
   var svg = null;
