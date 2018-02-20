@@ -24,7 +24,7 @@ function bubbleChart() {
     1: { x: width / 1.8, y: height / 5 * 1 },
     2: { x: width / 1.8, y: height / 5 * 2 },
     3: { x: width / 1.8, y: height / 5 * 3 },
-    4: { x: width / 1.8, y: height / 5 * 4 },
+    4: { x: width / 1.8, y: height / 5 * 4 }
   };
 
   console.log(nodeCenters);
@@ -34,10 +34,19 @@ function bubbleChart() {
     "Growing": height / 5 * 4,
     "Predicted to grow": height / 5 * 3,
     "Predicted to shrink": height / 5 * 2,
-    "Shrinking": height / 5 * 1,
+    "Shrinking": height / 5 * 1
+  };
+
+  // y locations of the year subtitletitles. nb html markup doesn't work
+  var yearsSubtitleY = {
+    "": height / 5 * 4 + 30,
+    "": height / 5 * 3 + 30,
+    "from fossil evidence, experiments or geographic comparisons": height / 5 * 2 + 30,
+    "": height / 5 * 1 + 30
   };
 
   console.log(yearsTitleY);
+  console.log(yearsSubtitleY);
 
   // @v4 strength to apply to the position forces
   var forceStrength = 0.07;
@@ -117,14 +126,18 @@ function bubbleChart() {
       return {
         id: d.id,
         radius: radiusScale(+d.studies),
-        value: +d.studies,
+        value: +d.studies, // determines size
         name: d.organism,
         change: d.change,
         location: d.location,
         group: d.class,         // will determine colour
         position: d.position,
         image: d.img,       // will determine icon
-        peak_year: d.peak_year,
+        journal: d.journal,
+        year: d.year,
+        author: d.author,
+        quote: d.quote,
+        link: d.link,
         x: Math.random() * 900,
         y: Math.random() * 800
       };
@@ -314,6 +327,7 @@ function bubbleChart() {
    */
   function splitBubbles() {
     showYearTitles();
+    showYearSubtitles();
 
     // @v4 Reset the 'x' force to draw the bubbles to their year centers
     simulation.force('y', d3.forceY().strength(forceStrength).y(nodeYearPos));
@@ -327,6 +341,7 @@ function bubbleChart() {
    */
   function hideYearTitles() {
     svg.selectAll('.year').remove();
+    svg.selectAll('.subtitle').remove();
   }
 
   /*
@@ -341,9 +356,27 @@ function bubbleChart() {
 
     years.enter().append('text')
       .attr('class', 'year')
-      .attr('x', 100)
+      .attr('x', 50)
       .attr('y', function (d) { return yearsTitleY[d]; })
-      .attr('text-anchor', 'middle')
+      .attr('text-anchor', 'left')
+      .text(function (d) { return d; });
+  }
+
+  /*
+   * Shows Year subtitle displays.
+   */
+  function showYearSubtitles() {
+    // Another way to do this would be to create
+    // the year texts once and then just hide them.
+    var subtitlesData = d3.keys(yearsSubtitleY);
+    var subtitles = svg.selectAll('.subtitle')
+      .data(subtitlesData);
+
+    subtitles.enter().append('text')
+      .attr('class', 'subtitle')
+      .attr('x', 50)
+      .attr('y', function (d) { return yearsSubtitleY[d]; })
+      .attr('text-anchor', 'left')
       .text(function (d) { return d; });
   }
 
@@ -382,12 +415,15 @@ function bubbleChart() {
     var content = '<h3>' +
       d.name +
       '</h3>' +
-      '<span class="name">Peak year: </span><span class="value">' +
-      d.peak_year +
+      '<span class="name">Summary: </span><span class="value">' +
+      d.quote +
       '</span><br/>' +
-      '<span class="name">Carbon footprint*: </span><span class="value">' +
-      addCommas(d.value) +
-      ' tonnes CO2E</span>';
+      '<span class="name">Location: </span><span class="value">' +
+      d.location +
+      '</span><br/>' + 
+      '<span class="name">Citation: </span><span class="value">' +
+      d.author + ' (' + d.year + '), <em>' + d.journal +
+      '</em></span>';
 
     tooltip.showTooltip(content, d3.event);
 
