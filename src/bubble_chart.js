@@ -39,14 +39,14 @@ function bubbleChart() {
 
   // y locations of the year subtitletitles. nb html markup doesn't work
   var yearsSubtitleY = {
-    "observed, with recent climate": height / 5 * 4 + 30,
-    "change implicated": height / 5 * 4 + 50,
-    "from fossil evidence,": height / 5 * 3 + 30,
-    "experiments or comparisons": height / 5 * 3 + 50,
-    "from fossil evidence, ": height / 5 * 2 + 30,
-    "experiments or comparisons ": height / 5 * 2 + 50,
-    "observed, with recent climate  ": height / 5 * 1 + 30,
-    "change implicated  ": height / 5 * 1 + 50
+    "observed, with recent climate": height / 5 * 4 + 25,
+    "change implicated": height / 5 * 4 + 42,
+    "from fossil evidence, experiments": height / 5 * 3 + 25,
+    "or geographic comparisons": height / 5 * 3 + 42,
+    "from fossil evidence, experiments ": height / 5 * 2 + 25,
+    "or geographic comparisons ": height / 5 * 2 + 42,
+    "observed, with recent climate  ": height / 5 * 1 + 25,
+    "change implicated  ": height / 5 * 1 + 42
   };
 
   console.log(yearsTitleY);
