@@ -293,8 +293,8 @@ function bubbleChart() {
    */
   function ticked() {
     bubbles
-      .attr('cx', function (d) { return d.x; })
-      .attr('cy', function (d) { return d.y; });
+      .attr("cx", function(d) { return d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)); })
+      .attr("cy", function(d) { return d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)); });
   }
 
   /*
