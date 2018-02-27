@@ -46,12 +46,8 @@
 }
 
 .entry {
-  margin-bottom: 0.3em;
-  margin-top: 0.3em;
-  padding-bottom: 0em;
-  padding-top: 0em;
-  border-bottom: 0em;
-  border-top: 0em;
+  margin-bottom: 0.4em;
+  margin-top: 0.4em;
 }
 
 .tooltip .name {

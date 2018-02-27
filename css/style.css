@@ -12,7 +12,15 @@ font-weight: bold;
 h1 {
 font-family: PT Sans Narrow;
 font-weight: normal;
-font-size: 30px;
+font-size: 35px;
+color: #77395e;
+}
+
+h2 {
+    color: #77395e;
+    font-family: PT Serif;
+    font-weight: normal;
+    font-size: 18px;
 }
 
 h3 {
