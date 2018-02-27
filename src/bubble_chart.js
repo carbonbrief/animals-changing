@@ -21,10 +21,10 @@ function bubbleChart() {
   var center = { x: width / 2, y: height / 1.9 };
 
   var nodeCenters = {
-    1: { x: width / 1.8, y: height / 5 * 1 },
-    2: { x: width / 1.8, y: height / 5 * 2 },
-    3: { x: width / 1.8, y: height / 5 * 3 },
-    4: { x: width / 1.8, y: height / 5 * 4 }
+    1: { x: width / 1.2, y: height / 5 * 1 },
+    2: { x: width / 1.2, y: height / 5 * 2 },
+    3: { x: width / 1.2, y: height / 5 * 3 },
+    4: { x: width / 1.2, y: height / 5 * 4 }
   };
 
   console.log(nodeCenters);
@@ -44,7 +44,7 @@ function bubbleChart() {
     "from fossil evidence, experiments": height / 5 * 3 + 25,
     "or geographic comparisons": height / 5 * 3 + 42,
     "from fossil evidence, experiments ": height / 5 * 2 + 25,
-    "or geographic comparisons ": height / 5 * 2 + 42,
+    "foxor geographic comparisons ": height / 5 * 2 + 42,
     "observed, with recent climate  ": height / 5 * 1 + 25,
     "change implicated  ": height / 5 * 1 + 42
   };
@@ -114,13 +114,13 @@ function bubbleChart() {
   function createNodes(rawData) {
     // Use the max studies in the data as the max in the scale's domain
     // note we have to ensure the studies is a number.
-    var maxAmount = d3.max(rawData, function (d) { return +d.studies; });
+    var maxAmount = d3.max(rawData, function (d) { return +d.size; });
 
     // Sizes bubbles based on area.
     // @v4: new flattened scale names.
     var radiusScale = d3.scalePow()
       .exponent(0.5)
-      .range([2, 55])
+      .range([2, 30])
       .domain([0, maxAmount]);
 
     // Use map() to convert raw data into node data.
@@ -129,8 +129,8 @@ function bubbleChart() {
     var myNodes = rawData.map(function (d) {
       return {
         id: d.id,
-        radius: radiusScale(+d.studies),
-        value: +d.studies, // determines size
+        radius: radiusScale(+d.size),
+        value: +d.size, // determines size
         name: d.organism,
         change: d.change,
         location: d.location,
@@ -140,7 +140,7 @@ function bubbleChart() {
         journal: d.journal,
         year: d.year,
         author: d.author,
-        quote: d.quote,
+        summary: d.summary,
         link: d.link,
         x: Math.random() * 900,
         y: Math.random() * 800
