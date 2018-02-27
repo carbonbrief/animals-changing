@@ -2,7 +2,7 @@
 
 p {
     font-family: PT Sans;
-  }
+}
   
 strong {
 font-family: PT Sans;
@@ -23,6 +23,15 @@ margin-bottom: 5px;
 margin-top: 0px;
 }
 
+h4 {
+    font-family: PT Serif;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 7px;
+    margin-top: 0px;
+}
+
 a {
 font-family: PT Sans;
 }
@@ -32,7 +41,7 @@ a, a:visited, a:active {
 }
 
 header {
-    background-color: rgba(161, 74, 123, 0.5);
+    background-color: rgba(161, 74, 123, 0.55);
     width: inherit;
     padding: 20px;
     width: 790px;
@@ -73,7 +82,7 @@ color: #fff;
     vertical-align: top;
     height: 80px;
     margin-top: 0px;
-    background-color: rgba(239, 198, 48, 0.5);
+    background-color: rgba(239, 198, 48, 0.6);
     width: 790px;
     padding: 20px;
 }

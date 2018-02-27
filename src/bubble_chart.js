@@ -44,7 +44,7 @@ function bubbleChart() {
     "from fossil evidence, experiments": height / 5 * 3 + 25,
     "or geographic comparisons": height / 5 * 3 + 42,
     "from fossil evidence, experiments ": height / 5 * 2 + 25,
-    "foxor geographic comparisons ": height / 5 * 2 + 42,
+    "or geographic comparisons ": height / 5 * 2 + 42,
     "observed, with recent climate  ": height / 5 * 1 + 25,
     "change implicated  ": height / 5 * 1 + 42
   };
@@ -132,12 +132,14 @@ function bubbleChart() {
         radius: radiusScale(+d.size),
         value: +d.size, // determines size
         name: d.organism,
+        latin: d.latin_name,
         change: d.change,
         location: d.location,
         group: d.class,         // will determine colour
         position: d.position,
         image: d.img,       // will determine icon
         journal: d.journal,
+        title: d.title,
         year: d.year,
         author: d.author,
         summary: d.summary,
@@ -293,8 +295,8 @@ function bubbleChart() {
    */
   function ticked() {
     bubbles
-      .attr("cx", function(d) { return d.x = Math.max(d.radius, Math.min(width - d.radius, d.x)); })
-      .attr("cy", function(d) { return d.y = Math.max(d.radius, Math.min(height - d.radius, d.y)); });
+      .attr("cx", function(d) { return d.x = Math.max((d.radius+5), Math.min(width - (d.radius+5), d.x)); })
+      .attr("cy", function(d) { return d.y = Math.max((d.radius+5), Math.min(height - (d.radius+5), d.y)); });
   }
 
   /*
@@ -418,16 +420,17 @@ function bubbleChart() {
 
     var content = '<h3>' +
       d.name +
-      '</h3>' +
-      '<span class="name">Summary: </span><span class="value">' +
-      d.quote +
-      '</span><br/>' +
-      '<span class="name">Location: </span><span class="value">' +
+      '</h3><h4>' +
+      d.latin + 
+      '</h4><p class="entry"><span class="name">Location: </span><span class="value">' +
       d.location +
-      '</span><br/>' + 
-      '<span class="name">Citation: </span><span class="value">' +
-      d.author + ' (' + d.year + '), <em>' + d.journal +
-      '</em></span>';
+      '</span></p>' +
+      '<p class="entry"><span class="name">Summary: </span><span class="value">' +
+      d.summary +
+      '</span></p>' + 
+      '<p class="entry"><span class="name">Citation: </span><span class="value">' +
+      d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
+      '.</em></span></p>';
 
     tooltip.showTooltip(content, d3.event);
 
