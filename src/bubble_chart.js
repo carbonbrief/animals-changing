@@ -418,7 +418,9 @@ function bubbleChart() {
 
     // show tooltip on mouseover
 
-    var content = '<h3>' +
+    var content = '<img src="img/' +
+      d.image +
+      '.svg" class="tooltip_image"><h3>' +
       d.name +
       '</h3><h4>' +
       d.latin + 

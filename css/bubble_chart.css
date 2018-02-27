@@ -37,10 +37,6 @@
 	z-index: 10;
 }
 
-.tooltip .title {
-  font-size: 13px;
-}
-
 .tooltip span {
   font-family: PT Sans;
 }
@@ -52,6 +48,13 @@
 
 .tooltip .name {
   font-weight:bold;
+}
+
+.tooltip_image {
+  width: 90px;
+  float: right;
+  display: block;
+  padding-right: 5px;
 }
 
 /* make responsive */
