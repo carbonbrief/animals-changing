@@ -11,7 +11,16 @@ function floatingTooltip(tooltipId, width) {
     .append('div')
     .attr('class', 'tooltip')
     .attr('id', tooltipId)
-    .style('pointer-events', 'visibleFill'); // change to auto so can add event listeners
+    .style('pointer-events', 'visibleFill'); // change to visibleFill so can add event listeners
+    
+  var tip = d3.select('body')
+    .append('polygon') // attempt to add pointer to tooltip
+    .attr('class', 'polygon-tip')
+    .attr("points", "0,50 25,0 50,50 0,50")
+    .style("fill", "white")
+    .style("stroke", "white")
+    .style("strokeWidth", "1px")
+    .style('pointer-events', 'none'); 
 
   // Set a width if it is provided.
   if (width) {
@@ -32,7 +41,12 @@ function floatingTooltip(tooltipId, width) {
     tt.style('opacity', 1.0)
       .html(content);
 
+    tip.style('opacity', 1.0);
+
     updatePosition(event);
+  }
+
+  function showTip() {
   }
 
   /*
@@ -40,6 +54,7 @@ function floatingTooltip(tooltipId, width) {
    */
   function hideTooltip() {
     tt.style('opacity', 0.0);
+    tip.style('opacity', 0.0);
   }
 
   /*
@@ -47,8 +62,8 @@ function floatingTooltip(tooltipId, width) {
    * based on d3 mouse event.
    */
   function updatePosition(event) {
-    var xOffset = 15;
-    var yOffset = 10;
+    var xOffset = 5;
+    var yOffset = 15;
 
     var ttw = tt.style('width');
     var tth = tt.style('height');
@@ -75,6 +90,9 @@ function floatingTooltip(tooltipId, width) {
     tt
       .style('top', tttop + 'px')
       .style('left', ttleft + 'px');
+
+    tip.style('top', (tttop - 30) + 'px')
+      .style('left', (ttleft + 30) + 'px');
   }
 
   return {
