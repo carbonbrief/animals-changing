@@ -452,7 +452,7 @@ function bubbleChart() {
 
     var tooltipListen = document.getElementById('gates_tooltip');
 
-    tooltipListen.style('pointer-events', 'auto');
+    tooltipListen.style.pointerEvents = 'visibleFill';
 
     tooltipListen.addEventListener('click', function b() {
 
@@ -462,7 +462,7 @@ function bubbleChart() {
 
       tooltipListen.removeEventListener('click', b);
 
-      tooltipListen.style('pointer-events', 'none');
+      tooltipListen.style.pointerEvents = 'none';
 
     });
 
@@ -494,6 +494,10 @@ function bubbleChart() {
         console.log('body click');
 
         listen.removeEventListener('click', a);
+
+        var tooltipListen = document.getElementById('gates_tooltip');
+
+        tooltipListen.style.pointerEvents = 'none';
 
     });
 
