@@ -391,11 +391,13 @@ function bubbleChart() {
    * Function called on mouseover to execute various behaviours
    */
 
+  // variable to turn tooltip on an off
+
   var toggleTooltip = true;
 
   function mouseclick (d) {
 
-    // to stop an event from propagating up the DOM tree
+    // to stop an event from propagating up the DOM tree, so that bodyclick doesn't get fired too
 
     d3.event.stopPropagation();
 
@@ -423,6 +425,8 @@ function bubbleChart() {
 
       console.log("show tooltip");
 
+      // so that it doesn't fire immediately and catch the current click
+
       setTimeout(bodyClick, 100);
 
       toggleTooltip = false;
@@ -442,11 +446,48 @@ function bubbleChart() {
 
   }
 
+  function tooltipClick () {
+
+    console.log('tooltip function');
+
+    var tooltipListen = document.getElementById('gates_tooltip');
+
+    tooltipListen.style('pointer-events', 'auto');
+
+    tooltipListen.addEventListener('click', function b() {
+
+      d3.event.stopPropagation();
+
+      console.log('stop tooltip propagation');
+
+      tooltipListen.removeEventListener('click', b);
+
+      tooltipListen.style('pointer-events', 'none');
+
+    });
+
+    console.log(tooltipListen);
+
+    // for (var i = 0 ; i < tooltipListen.length; i++) {
+    //   tooltipListen[i].addEventListener('click' , tooltipPropagation , false ) ; 
+    // }
+
+    // function tooltipPropagation () {
+    //   d3.event.stopPropagation();
+    //   console.log('stop tooltip propagation');
+    //   // tooltipListen.removeEventListener('click', tooltipPropagation);
+    // }
+    
+
+  }
+
+  // function so that tooltip dissapears when click off the graph
+
   function bodyClick () {
 
-    var listen = document.getElementById('bubble-chart');
+    tooltipClick();
 
-    //var listen = $("svg:not('.bubble')");
+    var listen = document.getElementById('bubble-chart');
 
     listen.addEventListener('click', function a() {
         tooltip.hideTooltip();

@@ -34,7 +34,7 @@
 	padding: 10px;
 	max-width: 260px;
 	font-size: 12px;
-	z-index: 10;
+  z-index: 10;
 }
 
 .tooltip span {

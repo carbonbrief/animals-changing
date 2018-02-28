@@ -11,7 +11,7 @@ function floatingTooltip(tooltipId, width) {
     .append('div')
     .attr('class', 'tooltip')
     .attr('id', tooltipId)
-    .style('pointer-events', 'none');
+    .style('pointer-events', 'visibleFill'); // change to auto so can add event listeners
 
   // Set a width if it is provided.
   if (width) {
