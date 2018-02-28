@@ -50,6 +50,10 @@
   font-weight:bold;
 }
 
+.tooltip .link {
+  font-weight:bold;
+}
+
 .tooltip_image {
   width: 90px;
   float: right;

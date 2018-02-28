@@ -48,6 +48,10 @@ a, a:visited, a:active {
     color: #A14A7b;
 }
 
+a:hover {
+    color: #e08b1b;
+}
+
 header {
     background-color: rgba(161, 74, 123, 0.55);
     width: inherit;

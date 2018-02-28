@@ -417,9 +417,12 @@ function bubbleChart() {
       '<p class="entry"><span class="name">Summary: </span><span class="value">' +
       d.summary +
       '</span></p>' + 
-      '<p class="entry"><span class="name">Citation: </span><span class="value">' +
-      d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
-      '.</em></span></p>';
+      // '<p class="entry"><span class="name">Citation: </span><span class="value">' +
+      // d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
+      // '.</em></span></p>' + 
+      '<p class="entry"><span class="link"><a href="' + 
+      d.link + 
+      '" target="blank">Link</a></span></p> ';
 
       tooltip.showTooltip(content, d3.event);
 
