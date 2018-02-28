@@ -417,11 +417,15 @@ function bubbleChart() {
 
       tooltip.showTooltip(content, d3.event);
 
+      console.log("show tooltip");
+
       setTimeout(bodyClick, 100);
 
       toggleTooltip = false;
 
     } else {
+
+      listen.removeEventListener('click', a);
 
       tooltip.hideTooltip();
 
@@ -438,11 +442,11 @@ function bubbleChart() {
 
     var listen = document.getElementById('bubble-chart');
 
-    var clickHandler = listen.addEventListener('click', function() {
+    listen.addEventListener('click', function a() {
         tooltip.hideTooltip();
         console.log('body click');
 
-        listen.removeEventListener('click', clickHandler);
+        listen.removeEventListener('click', a);
 
     });
 
