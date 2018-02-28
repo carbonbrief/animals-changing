@@ -244,6 +244,7 @@ function bubbleChart() {
       .attr('stroke-width', 2)
       .on('mouseover', mouseover)
       .on('mouseout', mouseout)
+      .on('click', mouseclick)
       .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
@@ -390,6 +391,54 @@ function bubbleChart() {
    * Function called on mouseover to execute various behaviours
    */
 
+  var toggleTooltip = true;
+
+  function mouseclick (d) {
+
+    if (toggleTooltip == true) {
+
+      // show tooltip on mouseclick if not already open
+
+      var content = '<img src="img/' +
+      d.image +
+      '.svg" class="tooltip_image"><h3>' +
+      d.name +
+      '</h3><h4>' +
+      d.latin + 
+      '</h4><p class="entry"><span class="name">Location: </span><span class="value">' +
+      d.location +
+      '</span></p>' +
+      '<p class="entry"><span class="name">Summary: </span><span class="value">' +
+      d.summary +
+      '</span></p>' + 
+      '<p class="entry"><span class="name">Citation: </span><span class="value">' +
+      d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
+      '.</em></span></p>';
+
+      tooltip.showTooltip(content, d3.event);
+
+      toggleTooltip = false;
+
+      var listen = document.getElementById('bubble-chart');
+
+      listen.addEventListener('click', function() {
+        mouseclick(d);
+        console.log('body click');
+      });
+
+    } else {
+
+      tooltip.hideTooltip();
+
+      toggleTooltip = true;
+
+    }
+  
+    
+
+
+  }
+
   function mouseover(d) {
 
     // change size of bubbles on mouseover
@@ -418,23 +467,23 @@ function bubbleChart() {
 
     // show tooltip on mouseover
 
-    var content = '<img src="img/' +
-      d.image +
-      '.svg" class="tooltip_image"><h3>' +
-      d.name +
-      '</h3><h4>' +
-      d.latin + 
-      '</h4><p class="entry"><span class="name">Location: </span><span class="value">' +
-      d.location +
-      '</span></p>' +
-      '<p class="entry"><span class="name">Summary: </span><span class="value">' +
-      d.summary +
-      '</span></p>' + 
-      '<p class="entry"><span class="name">Citation: </span><span class="value">' +
-      d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
-      '.</em></span></p>';
+    // var content = '<img src="img/' +
+    //   d.image +
+    //   '.svg" class="tooltip_image"><h3>' +
+    //   d.name +
+    //   '</h3><h4>' +
+    //   d.latin + 
+    //   '</h4><p class="entry"><span class="name">Location: </span><span class="value">' +
+    //   d.location +
+    //   '</span></p>' +
+    //   '<p class="entry"><span class="name">Summary: </span><span class="value">' +
+    //   d.summary +
+    //   '</span></p>' + 
+    //   '<p class="entry"><span class="name">Citation: </span><span class="value">' +
+    //   d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
+    //   '.</em></span></p>';
 
-    tooltip.showTooltip(content, d3.event);
+    // tooltip.showTooltip(content, d3.event);
 
     // console.log("mouseover event");
 
@@ -460,7 +509,7 @@ function bubbleChart() {
       .attr('opacity', 1);
 
     // hide tooltip
-    tooltip.hideTooltip();
+    // tooltip.hideTooltip();
 
     // console.log("mouse event end");
   }
