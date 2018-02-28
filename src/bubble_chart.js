@@ -395,6 +395,10 @@ function bubbleChart() {
 
   function mouseclick (d) {
 
+    // to stop an event from propagating up the DOM tree
+
+    d3.event.stopPropagation();
+
     if (toggleTooltip == true) {
 
       // show tooltip on mouseclick if not already open
@@ -425,11 +429,11 @@ function bubbleChart() {
 
     } else {
 
-      listen.removeEventListener('click', a);
-
       tooltip.hideTooltip();
 
       toggleTooltip = true;
+
+      console.log("show tooltip");
 
     }
   
@@ -441,6 +445,8 @@ function bubbleChart() {
   function bodyClick () {
 
     var listen = document.getElementById('bubble-chart');
+
+    //var listen = $("svg:not('.bubble')");
 
     listen.addEventListener('click', function a() {
         tooltip.hideTooltip();
