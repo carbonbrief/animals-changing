@@ -417,14 +417,9 @@ function bubbleChart() {
 
       tooltip.showTooltip(content, d3.event);
 
+      setTimeout(bodyClick, 100);
+
       toggleTooltip = false;
-
-      var listen = document.getElementById('bubble-chart');
-
-      listen.addEventListener('click', function() {
-        mouseclick(d);
-        console.log('body click');
-      });
 
     } else {
 
@@ -437,6 +432,22 @@ function bubbleChart() {
     
 
 
+  }
+
+  function bodyClick () {
+
+    var listen = document.getElementById('bubble-chart');
+
+    var clickHandler = listen.addEventListener('click', function() {
+        tooltip.hideTooltip();
+        console.log('body click');
+
+        listen.removeEventListener('click', clickHandler);
+
+    });
+
+    toggleTooltip = true;
+    
   }
 
   function mouseover(d) {
