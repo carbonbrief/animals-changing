@@ -11,7 +11,7 @@ function bubbleChart() {
   // Constants for sizing
   // will be changing viewport so don't need to make responsive here
   var width = 830;
-  var height = 1050;
+  var height = 950;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -21,32 +21,32 @@ function bubbleChart() {
   var center = { x: width / 2, y: height / 1.9 };
 
   var nodeCenters = {
-    1: { x: width / 1.2, y: height / 5 * 1 },
-    2: { x: width / 1.2, y: height / 5 * 2 },
-    3: { x: width / 1.2, y: height / 5 * 3 },
-    4: { x: width / 1.2, y: height / 5 * 4 }
+    1: { x: width / 1.5, y: height / 5 * 1 },
+    2: { x: width / 1.5, y: height / 5 * 2.2 },
+    3: { x: width / 1.5, y: height / 5 * 3.2 },
+    4: { x: width / 1.5, y: height / 5 * 4.2 }
   };
 
   console.log(nodeCenters);
 
   // y locations of the year titles. nb html markup doesn't work
   var yearsTitleY = {
-    "Growing": height / 5 * 4,
-    "Predicted to grow": height / 5 * 3,
-    "Predicted to shrink": height / 5 * 2,
-    "Shrinking": height / 5 * 1
+    "Growing": height / 5 * 4.3,
+    "Predicted to grow": height / 5 * 3.4,
+    "Predicted to shrink": height / 5 * 2.2,
+    "Shrinking": height / 5 * 0.8
   };
 
-  // y locations of the year subtitletitles. nb html markup doesn't work
+  // y locations of the year subtitletitles. slightly hacky method
   var yearsSubtitleY = {
-    "observed, with recent climate": height / 5 * 4 + 25,
-    "change implicated": height / 5 * 4 + 42,
-    "from fossil evidence, experiments": height / 5 * 3 + 25,
-    "or geographic comparisons": height / 5 * 3 + 42,
-    "from fossil evidence, experiments ": height / 5 * 2 + 25,
-    "or geographic comparisons ": height / 5 * 2 + 42,
-    "observed, with recent climate  ": height / 5 * 1 + 25,
-    "change implicated  ": height / 5 * 1 + 42
+    "observed, with recent climate": height / 5 * 4.3 + 25,
+    "change implicated": height / 5 * 4.3 + 42,
+    "from fossil evidence, experiments": height / 5 * 3.4 + 25,
+    "or geographic comparisons": height / 5 * 3.4 + 42,
+    "from fossil evidence, experiments ": height / 5 * 2.2 + 25,
+    "or geographic comparisons ": height / 5 * 2.2 + 42,
+    "observed, with recent climate  ": height / 5 * 0.8 + 25,
+    "change implicated  ": height / 5 * 0.8 + 42
   };
 
   console.log(yearsTitleY);
@@ -120,7 +120,7 @@ function bubbleChart() {
     // @v4: new flattened scale names.
     var radiusScale = d3.scalePow()
       .exponent(0.5)
-      .range([2, 30])
+      .range([2, 25])
       .domain([0, maxAmount]);
 
     // Use map() to convert raw data into node data.
@@ -249,8 +249,8 @@ function bubbleChart() {
                 .on("start", dragstarted)
                 .on("drag", dragged)
                 .on("end", dragended));
-      // .on('click', showDetail);
-      //.on('mouseout', hideDetail);
+
+    // drag actions
 
     function dragstarted(d) {
       if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -301,11 +301,17 @@ function bubbleChart() {
   }
 
   /*
-   * Provides a x value for each node to be used with the split by year
-   * x force.
+   * Provides a y value for each node to be used with the split by year
+   * y force.
    */
-  function nodeYearPos(d) {
+  function nodePosY(d) {
     return nodeCenters[d.position].y;
+  }
+
+  // add extra one for the x position
+
+  function nodePosX(d) {
+    return nodeCenters[d.position].x;
   }
 
 
@@ -318,8 +324,10 @@ function bubbleChart() {
   function groupBubbles() {
     hideYearTitles();
 
-    // @v4 Reset the 'x' force to draw the bubbles to the center.
+    // @v4 Reset the 'y' force to draw the bubbles to the center.
     simulation.force('y', d3.forceY().strength(forceStrength).y(center.y));
+
+    simulation.force('x', d3.forceX().strength(forceStrength).x(center.x));
 
     // @v4 We can reset the alpha value and restart the simulation
     simulation.alpha(1).restart();
@@ -336,8 +344,10 @@ function bubbleChart() {
     showYearTitles();
     showYearSubtitles();
 
-    // @v4 Reset the 'x' force to draw the bubbles to their year centers
-    simulation.force('y', d3.forceY().strength(forceStrength).y(nodeYearPos));
+    // @v4 Reset the 'y' force to draw the bubbles to their year centers
+    simulation.force('y', d3.forceY().strength(forceStrength).y(nodePosY));
+
+    simulation.force('x', d3.forceX().strength(forceStrength).x(nodePosX));
 
     // @v4 We can reset the alpha value and restart the simulation
     simulation.alpha(1).restart();
