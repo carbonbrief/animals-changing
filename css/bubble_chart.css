@@ -37,16 +37,16 @@
   z-index: 10;
 }
 
-.polygon-tip {
+/* styling for tip container */
+
+.tip-container {
 	position: absolute;
 	top: 100px;
 	left: 100px;
-  -moz-border-radius:2px;
-	border-radius: 2px;
-  background: #fff;
   z-index: 10;
-  width: 30px;
-  height: 30px;
+  pointer-events: none;
+  width: 40px;
+  height: 40px;
 }
 
 .tooltip span {

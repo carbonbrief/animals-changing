@@ -12,14 +12,19 @@ function floatingTooltip(tooltipId, width) {
     .attr('class', 'tooltip')
     .attr('id', tooltipId)
     .style('pointer-events', 'visibleFill'); // change to visibleFill so can add event listeners
-    
-  var tip = d3.select('body')
-    .append('polygon') // attempt to add pointer to tooltip
-    .attr('class', 'polygon-tip')
-    .attr("points", "0,50 25,0 50,50 0,50")
+  
+  // create container for polygon
+  
+  var tipContainer = d3.select("body")
+    .append("svg")
+    .attr('class', 'tip-container');
+
+  var tip = tipContainer.append('polygon') // attempt to add pointer to tooltip
+    .attr("points", "0,50 15,20 30,50 0,50")
     .style("fill", "white")
     .style("stroke", "white")
-    .style("strokeWidth", "1px")
+    .style("stroke-width", "4px")
+    .style("stroke-linejoin", "round")
     .style('pointer-events', 'none'); 
 
   // Set a width if it is provided.
@@ -62,8 +67,8 @@ function floatingTooltip(tooltipId, width) {
    * based on d3 mouse event.
    */
   function updatePosition(event) {
-    var xOffset = 5;
-    var yOffset = 15;
+    var xOffset = -45;
+    var yOffset = 25;
 
     var ttw = tt.style('width');
     var tth = tt.style('height');
@@ -91,7 +96,7 @@ function floatingTooltip(tooltipId, width) {
       .style('top', tttop + 'px')
       .style('left', ttleft + 'px');
 
-    tip.style('top', (tttop - 30) + 'px')
+    tipContainer.style('top', (tttop - 30) + 'px')
       .style('left', (ttleft + 30) + 'px');
   }
 
