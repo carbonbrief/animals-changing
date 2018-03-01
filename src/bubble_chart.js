@@ -11,7 +11,7 @@ function bubbleChart() {
   // Constants for sizing
   // will be changing viewport so don't need to make responsive here
   var width = 830;
-  var height = 950;
+  var height = 900;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -21,30 +21,30 @@ function bubbleChart() {
   var center = { x: width / 2, y: height / 1.9 };
 
   var nodeCenters = {
-    1: { x: width / 1.5, y: height / 5 * 1 },
-    2: { x: width / 1.5, y: height / 5 * 2.2 },
-    3: { x: width / 1.5, y: height / 5 * 3.2 },
-    4: { x: width / 1.5, y: height / 5 * 4.2 }
+    1: { x: width / 1.65, y: height / 5 * 1.25 },
+    2: { x: width / 1.65, y: height / 5 * 2.3 },
+    3: { x: width / 1.65, y: height / 5 * 3.2 },
+    4: { x: width / 1.65, y: height / 5 * 4.0 }
   };
 
   console.log(nodeCenters);
 
   // y locations of the year titles. nb html markup doesn't work
   var yearsTitleY = {
-    "Growing": height / 5 * 4.3,
-    "Predicted to grow": height / 5 * 3.4,
-    "Predicted to shrink": height / 5 * 2.2,
+    "Growing": height / 5 * 4.4,
+    "Predicted to grow": height / 5 * 3.6,
+    "Predicted to shrink": height / 5 * 2.3,
     "Shrinking": height / 5 * 0.8
   };
 
   // y locations of the year subtitletitles. slightly hacky method
   var yearsSubtitleY = {
-    "observed, with recent climate": height / 5 * 4.3 + 25,
-    "change implicated": height / 5 * 4.3 + 42,
-    "from fossil evidence, experiments": height / 5 * 3.4 + 25,
-    "or geographic comparisons": height / 5 * 3.4 + 42,
-    "from fossil evidence, experiments ": height / 5 * 2.2 + 25,
-    "or geographic comparisons ": height / 5 * 2.2 + 42,
+    "observed, with recent climate": height / 5 * 4.4 + 25,
+    "change implicated": height / 5 * 4.4 + 42,
+    "from fossil evidence, experiments": height / 5 * 3.6 + 25,
+    "or geographic comparisons": height / 5 * 3.6 + 42,
+    "from fossil evidence, experiments ": height / 5 * 2.3 + 25,
+    "or geographic comparisons ": height / 5 * 2.3 + 42,
     "observed, with recent climate  ": height / 5 * 0.8 + 25,
     "change implicated  ": height / 5 * 0.8 + 42
   };
@@ -120,7 +120,7 @@ function bubbleChart() {
     // @v4: new flattened scale names.
     var radiusScale = d3.scalePow()
       .exponent(0.5)
-      .range([2, 25])
+      .range([2, 27])
       .domain([0, maxAmount]);
 
     // Use map() to convert raw data into node data.

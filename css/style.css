@@ -14,6 +14,7 @@ font-family: PT Sans Narrow;
 font-weight: normal;
 font-size: 35px;
 color: #77395e;
+margin-bottom: 5px;
 }
 
 h2 {
@@ -49,13 +50,14 @@ a, a:visited, a:active {
 }
 
 a:hover {
-    color: #e08b1b;
+    color: #77395e;
 }
 
 header {
     background-color: rgba(161, 74, 123, 0.55);
     width: inherit;
     padding: 20px;
+    padding-bottom: 10px;
     width: 790px;
 }
 
@@ -69,7 +71,7 @@ header {
 }
 
 #toolbar {
-    margin-top: 0px;
+    margin-top: 15px;
     margin-bottom: 0px;
     opacity: 0;
 }
@@ -85,7 +87,7 @@ text-decoration: none;
 }
 
 .button.active {
-background: #333333;
+background: #A14A7b;
 color: #fff;
 }
 
@@ -94,7 +96,7 @@ color: #fff;
     vertical-align: top;
     height: 80px;
     margin-top: 0px;
-    background-color: rgba(239, 198, 48, 0.6);
+    background-color: rgba(239, 198, 48, 0.65);
     width: 790px;
     padding: 20px;
 }

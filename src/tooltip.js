@@ -70,21 +70,34 @@ function floatingTooltip(tooltipId, width) {
     var xOffset = -45;
     var yOffset = 25;
 
+    // retrieves width and height of tooltips
+
     var ttw = tt.style('width');
     var tth = tt.style('height');
+
+    // the number of pixels at which the document is currently scrolled horizontally or vertically
 
     var wscrY = window.scrollY;
     var wscrX = window.scrollX;
 
+    // clientX retreives horizontal coordinate or application area, regardless of how page is scrolled horizontally
+    // event.pageX = The mouse position relative to the left edge of the document - counting scroll
+    // A ternary operator is used as shorthand of an if/else statement. 
+    // It is written with the syntax of a question mark (?) followed by a colon (:)
+    // document.all is a bit like documentGetElementById
+
     var curX = (document.all) ? event.clientX + wscrX : event.pageX;
     var curY = (document.all) ? event.clientY + wscrY : event.pageY;
+
+    // works out the position of the tooltip from the left
     var ttleft = ((curX - wscrX + xOffset * 2 + ttw) > window.innerWidth) ?
                  curX - ttw - xOffset * 2 : curX + xOffset;
 
     if (ttleft < wscrX + xOffset) {
       ttleft = wscrX + xOffset;
     }
-
+    
+    // works out the position of the tooltip from the top
     var tttop = ((curY - wscrY + yOffset * 2 + tth) > window.innerHeight) ?
                 curY - tth - yOffset * 2 : curY + yOffset;
 
