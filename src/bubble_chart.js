@@ -402,6 +402,17 @@ function bubbleChart() {
 
   function showChangeLine () {
 
+    var line1Data = [
+      {
+        "x": width/2.1,
+        "y": height/5*1.25
+      },
+      {
+        "x": width/2.4,
+        "y": height/5*1.25
+      }
+    ]
+
     var t = d3.transition()
       .delay(100)
       .duration(700)
@@ -410,12 +421,21 @@ function bubbleChart() {
       .on("start", function(d){ console.log("transiton start"); })
       .on("end", transitionEnd);
 
-    svg.append("line")
+    var lineFunction = d3.line()
+      .x(function(d) { return d.x; })
+      .y(function(d) { return d.y; });
+
+    var line1 = svg.selectAll(".change-line")
+      .data([line1Data]);
+
+    line1.enter().append("path")
       .attr("class", "change-line")
-      .attr("x1", width/2.1)
-      .attr("y1", height/5*1.25)
-      .attr("x2", width/2.4)
-      .attr("y2", height/5*1.25);
+      .merge(line1)
+      .attr("d", lineFunction(line1Data))
+      .attr("fill", "none")
+      .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+      .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+
 
     svg.selectAll(".change-line")
       .transition(t)
@@ -424,7 +444,7 @@ function bubbleChart() {
     function transitionEnd () {
       svg.selectAll(".change-line")
       .style("stroke-dasharray", ("4, 4"));
-      
+
       console.log("transiton end");
     }
 
