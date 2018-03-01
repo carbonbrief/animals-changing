@@ -30,7 +30,7 @@ function bubbleChart() {
   console.log(nodeCenters);
 
   // y locations of the year titles. nb html markup doesn't work
-  var yearsTitleY = {
+  var changesTitleY = {
     "Growing": height / 5 * 4.4,
     "Predicted to grow": height / 5 * 3.6,
     "Predicted to shrink": height / 5 * 2.3,
@@ -38,7 +38,7 @@ function bubbleChart() {
   };
 
   // y locations of the year subtitletitles. slightly hacky method
-  var yearsSubtitleY = {
+  var changesSubtitleY = {
     "observed, with recent climate": height / 5 * 4.4 + 25,
     "change implicated": height / 5 * 4.4 + 42,
     "from fossil evidence, experiments": height / 5 * 3.6 + 25,
@@ -49,8 +49,8 @@ function bubbleChart() {
     "change implicated  ": height / 5 * 0.8 + 42
   };
 
-  console.log(yearsTitleY);
-  console.log(yearsSubtitleY);
+  console.log(changesTitleY);
+  console.log(changesSubtitleY);
 
   // @v4 strength to apply to the position forces
   var forceStrength = 0.07;
@@ -322,7 +322,7 @@ function bubbleChart() {
    * center of the visualization.
    */
   function groupBubbles() {
-    hideYearTitles();
+    hideChangeTitles();
 
     // @v4 Reset the 'y' force to draw the bubbles to the center.
     simulation.force('y', d3.forceY().strength(forceStrength).y(center.y));
@@ -341,8 +341,9 @@ function bubbleChart() {
    * nodeCenter of their data's year.
    */
   function splitBubbles() {
-    showYearTitles();
-    showYearSubtitles();
+    showChangeTitles();
+    showChangeSubtitles();
+    showChangeLine();
 
     // @v4 Reset the 'y' force to draw the bubbles to their year centers
     simulation.force('y', d3.forceY().strength(forceStrength).y(nodePosY));
@@ -354,47 +355,79 @@ function bubbleChart() {
   }
 
   /*
-   * Hides Year title displays.
+   * Hides size change title displays.
    */
-  function hideYearTitles() {
-    svg.selectAll('.year').remove();
+  function hideChangeTitles() {
+    svg.selectAll('.change').remove();
     svg.selectAll('.subtitle').remove();
   }
 
   /*
-   * Shows Year title displays.
+   * Shows size change title displays.
    */
-  function showYearTitles() {
+  function showChangeTitles() {
     // Another way to do this would be to create
-    // the year texts once and then just hide them.
-    var yearsData = d3.keys(yearsTitleY);
-    var years = svg.selectAll('.year')
-      .data(yearsData);
+    // the change texts once and then just hide them.
+    var changesData = d3.keys(changesTitleY);
+    var changes = svg.selectAll('.change')
+      .data(changesData);
 
-    years.enter().append('text')
-      .attr('class', 'year')
+    changes.enter().append('text')
+      .attr('class', 'change')
       .attr('x', 40)
-      .attr('y', function (d) { return yearsTitleY[d]; })
+      .attr('y', function (d) { return changesTitleY[d]; })
       .attr('text-anchor', 'left')
       .text(function (d) { return d; });
   }
 
   /*
-   * Shows Year subtitle displays.
+   * Shows change subtitle displays.
    */
-  function showYearSubtitles() {
+  function showChangeSubtitles() {
     // Another way to do this would be to create
     // the year texts once and then just hide them.
-    var subtitlesData = d3.keys(yearsSubtitleY);
+    var subtitlesData = d3.keys(changesSubtitleY);
     var subtitles = svg.selectAll('.subtitle')
       .data(subtitlesData);
 
     subtitles.enter().append('text')
       .attr('class', 'subtitle')
       .attr('x', 40)
-      .attr('y', function (d) { return yearsSubtitleY[d]; })
+      .attr('y', function (d) { return changesSubtitleY[d]; })
       .attr('text-anchor', 'left')
       .text(function (d) { return d; });
+  }
+
+  // function to add lines linking titles to bubbles
+
+  function showChangeLine () {
+
+    var t = d3.transition()
+      .delay(100)
+      .duration(700)
+      .ease(d3.easeLinear)
+      // .attr("x2", width/2.4)
+      .on("start", function(d){ console.log("transiton start"); })
+      .on("end", transitionEnd);
+
+    svg.append("line")
+      .attr("class", "change-line")
+      .attr("x1", width/2.1)
+      .attr("y1", height/5*1.25)
+      .attr("x2", width/2.4)
+      .attr("y2", height/5*1.25);
+
+    svg.selectAll(".change-line")
+      .transition(t)
+      .attr("stroke-dashoffset", 0);
+  
+    function transitionEnd () {
+      svg.selectAll(".change-line")
+      .style("stroke-dasharray", ("4, 4"));
+      
+      console.log("transiton end");
+    }
+
   }
 
   /*
@@ -404,6 +437,8 @@ function bubbleChart() {
   // variable to turn tooltip on an off
 
   var toggleTooltip = true;
+
+  // actions on mouseclick, depending on the variable toggleTooltip
 
   function mouseclick (d) {
 
@@ -459,6 +494,8 @@ function bubbleChart() {
 
   }
 
+  // function to stop clicks on the tooltip propagating to the body
+
   function tooltipClick () {
 
     console.log('tooltip function');
@@ -479,19 +516,8 @@ function bubbleChart() {
 
     });
 
-    console.log(tooltipListen);
-
-    // for (var i = 0 ; i < tooltipListen.length; i++) {
-    //   tooltipListen[i].addEventListener('click' , tooltipPropagation , false ) ; 
-    // }
-
-    // function tooltipPropagation () {
-    //   d3.event.stopPropagation();
-    //   console.log('stop tooltip propagation');
-    //   // tooltipListen.removeEventListener('click', tooltipPropagation);
-    // }
+    // console.log(tooltipListen);
     
-
   }
 
   // function so that tooltip dissapears when click off the graph
@@ -517,6 +543,8 @@ function bubbleChart() {
     toggleTooltip = true;
     
   }
+
+  // mouseover style changes, no longer linked to tooltip
 
   function mouseover(d) {
 
@@ -544,26 +572,6 @@ function bubbleChart() {
     .style("fill", function(d) { return "url(#" + d.image + "2)"})
     .attr('opacity', 1);
 
-    // show tooltip on mouseover
-
-    // var content = '<img src="img/' +
-    //   d.image +
-    //   '.svg" class="tooltip_image"><h3>' +
-    //   d.name +
-    //   '</h3><h4>' +
-    //   d.latin + 
-    //   '</h4><p class="entry"><span class="name">Location: </span><span class="value">' +
-    //   d.location +
-    //   '</span></p>' +
-    //   '<p class="entry"><span class="name">Summary: </span><span class="value">' +
-    //   d.summary +
-    //   '</span></p>' + 
-    //   '<p class="entry"><span class="name">Citation: </span><span class="value">' +
-    //   d.author + ' (' + d.year + '), "' + d.title + '". <em>' + d.journal +
-    //   '.</em></span></p>';
-
-    // tooltip.showTooltip(content, d3.event);
-
     // console.log("mouseover event");
 
   }
@@ -586,9 +594,6 @@ function bubbleChart() {
       .attr('stroke', d3.rgb(fillColor(d.change)))
       .style("fill", function(d) { return "url(#" + d.image + ")"})
       .attr('opacity', 1);
-
-    // hide tooltip
-    // tooltip.hideTooltip();
 
     // console.log("mouse event end");
   }
@@ -704,52 +709,54 @@ var varState = "";
 
 // the .bubble method is not going to work because the bubbles do not have data associated with them once drawn
 
-function filterBubbles (varState) { // filter that can be used slightly differently each time
+// DRAFT CODE NOT CURRENTLY ACTIVE
 
-  if (varState === "All continents") {  //since All Continents will not be a variable in the data
+// function filterBubbles (varState) { // filter that can be used slightly differently each time
 
-    console.log("if");
+//   if (varState === "All continents") {  //since All Continents will not be a variable in the data
 
-    d3.csv('data/test.csv', display);
-    setTimeout(initialTransition, 300);
+//     console.log("if");
+
+//     d3.csv('data/test.csv', display);
+//     setTimeout(initialTransition, 300);
 
     
-  }
-  else {
+//   }
+//   else {
 
-    console.log("else");
+//     console.log("else");
 
-        // var filteredData = d3.selectAll(".bubble").filter(function(d){
-    //   return continent == [varState]; 
-    // })
-    // console.log(filteredData.length);
+//         // var filteredData = d3.selectAll(".bubble").filter(function(d){
+//     //   return continent == [varState]; 
+//     // })
+//     // console.log(filteredData.length);
 
-    // d3.csv("data/dummy-data-3.csv", function(data, varState) {
-    //   filteredData = data.filter(function(row) {
-    //     return row['continent'] == [varState]; 
-    //   });
+//     // d3.csv("data/dummy-data-3.csv", function(data, varState) {
+//     //   filteredData = data.filter(function(row) {
+//     //     return row['continent'] == [varState]; 
+//     //   });
 
-    //   console.log(filteredData.length, filteredData);
+//     //   console.log(filteredData.length, filteredData);
 
-    //   display(error, filteredData);
+//     //   display(error, filteredData);
       
-    // });
+//     // });
     
-  }
+//   }
 
-}
+// }
 
-$("#dropdown").change(function() {
+// $("#dropdown").change(function() {
 
-  varState = $(this).val();
+//   varState = $(this).val();
 
-  d3.selectAll("#bubble-chart svg").remove();
+//   d3.selectAll("#bubble-chart svg").remove();
 
-  console.log(varState);
+//   console.log(varState);
 
-  filterBubbles(varState);
+//   filterBubbles(varState);
 
-})
+// })
 
 // reset dropdown on window reload
 

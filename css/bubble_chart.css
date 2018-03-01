@@ -6,7 +6,7 @@
   background: linear-gradient(rgba(161, 74, 123, 0.55), rgba(239, 198, 48, 0.58));
 }
 
-.year {
+.change {
   font-size: 25px;
   fill: #ffffff;
   cursor: default;
@@ -20,6 +20,11 @@
   fill: #ffffff;
   cursor: default;
   text-anchor: start;
+}
+
+.change-line {
+  stroke: white;
+  z-index: 10;
 }
 
 .tooltip {
