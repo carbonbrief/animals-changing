@@ -614,6 +614,7 @@ function bubbleChart() {
     // change size of bubbles on mouseover
     d3.select(this).transition()
       .duration(450)
+      .ease(d3.easeLinear)
       .attr("r", function(d){ 
         if (d.position > 2) {
           return d.radius*1.2;
@@ -647,7 +648,8 @@ function bubbleChart() {
 
     // reset bubble size
     d3.select(this).transition()
-      .duration(650)
+      .duration(750)
+      .ease(d3.easeLinear)
       .attr("r", function(d){return d.radius});
 
     // reset stroke outline
