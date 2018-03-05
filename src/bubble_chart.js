@@ -239,7 +239,9 @@ function bubbleChart() {
       .classed('bubble', true)
       .style("fill", function(d) { return "url(#" + d.image + ")"})
       .attr('r', 0)  // initial radius zero to allow transition
-      //.attr('fill', function (d) { return fillColor(d.group); })
+      .attr('class', function(d) { 
+        return "bubble " + d.group 
+      })
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.change)); })
       .attr('stroke-width', 2)
       .on('mouseover', mouseover)
@@ -493,10 +495,6 @@ function bubbleChart() {
 
   }
 
-  /*
-   * Function called on mouseover to execute various behaviours
-   */
-
   // variable to turn tooltip on an off
 
   var toggleTooltip = true;
@@ -668,6 +666,7 @@ function bubbleChart() {
    *
    * displayName is expected to be a string and either 'year' or 'all'.
    */
+
   chart.toggleDisplay = function (displayName) {
     if (displayName === 'year') {
       splitBubbles();
@@ -675,6 +674,18 @@ function bubbleChart() {
       groupBubbles();
     }
   };
+
+  // code to control dropdown
+
+  $('#groups').change(function () {
+    if (this.value == "All") {
+      d3.selectAll('.bubble').style("opacity", "1");
+    }
+    else {
+      d3.selectAll('.bubble').style("opacity", "0.3");
+      d3.selectAll('.' + this.value).style("opacity", "1");
+    }
+  })
 
 
   // return the chart function from closure.
