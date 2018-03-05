@@ -94,7 +94,7 @@ color: #fff;
 .footer {
     text-align: left;
     vertical-align: top;
-    height: 80px;
+    height: 130px;
     margin-top: 0px;
     background-color: rgba(239, 198, 48, 0.65);
     width: 790px;
@@ -108,7 +108,11 @@ color: #fff;
 }
   
 #credit {
-    height: 80px;
+    height: 140px;
+}
+
+.footer p {
+    color: #b77408;
 }
 
 
@@ -118,7 +122,8 @@ color: #fff;
     z-index: 9000;
     height: 80px;
     width: 150px;
-    background-image:url(cb-logo.png);
+    background-image:url(../img/cb-logo.png);
+    background-size: 150px;
     image-rendering: crisp-edges;
     background-repeat: no-repeat;
     vertical-align: bottom;

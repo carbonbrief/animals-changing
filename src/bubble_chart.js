@@ -32,8 +32,8 @@ function bubbleChart() {
   // y locations of the year titles. nb html markup doesn't work
   var changesTitleY = {
     "Growing": height / 5 * 4.4,
-    "Predicted to grow": height / 5 * 3.6,
-    "Predicted to shrink": height / 5 * 2.3,
+    "Could grow": height / 5 * 3.6,
+    "Could shrink": height / 5 * 2.3,
     "Shrinking": height / 5 * 0.8
   };
 
@@ -41,10 +41,10 @@ function bubbleChart() {
   var changesSubtitleY = {
     "observed, with recent climate": height / 5 * 4.4 + 25,
     "change implicated": height / 5 * 4.4 + 42,
-    "from fossil evidence, experiments": height / 5 * 3.6 + 25,
-    "or geographic comparisons": height / 5 * 3.6 + 42,
-    "from fossil evidence, experiments ": height / 5 * 2.3 + 25,
-    "or geographic comparisons ": height / 5 * 2.3 + 42,
+    "predicted or implied by experiments,": height / 5 * 3.6 + 25,
+    "geographic comparisons, or fossil evidence": height / 5 * 3.6 + 42,
+    "predicted or implied by experiments, ": height / 5 * 2.3 + 25,
+    "geographic comparisons, or fossil evidence ": height / 5 * 2.3 + 42,
     "observed, with recent climate  ": height / 5 * 0.8 + 25,
     "change implicated  ": height / 5 * 0.8 + 42
   };
