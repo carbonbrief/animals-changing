@@ -20,8 +20,10 @@
         <h2>Studies have already found evidence that some species are <span style="background-color: #A14A7B; color: white; border: 1px solid #A14A7B; border-radius: 5px;">shrinking</span> or <span style="background-color: #e08b1b; color: white; border: 1px solid #e08b1b; border-radius: 5px;">growing</span></h2>
         <!-- remove toolbar as not particularly useful? but keep underlying code so  -->
         <div id="toolbar">
-          <a href="#" id="all" class="button active">One cluster</a>
-          <a href="#" id="year" class="button">By change</a>
+          <select id="cluster">
+            <option value="all" selected="true">One cluster</option>
+            <option value="change">By change</option>
+          </select>
           <select id="groups">
             <option value="All" selected="true">All</option>
             <option value="Amphibians">Amphibians</option>

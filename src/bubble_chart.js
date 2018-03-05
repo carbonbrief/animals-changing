@@ -668,12 +668,20 @@ function bubbleChart() {
    */
 
   chart.toggleDisplay = function (displayName) {
-    if (displayName === 'year') {
+    if (displayName === 'change') {
       splitBubbles();
     } else {
       groupBubbles();
     }
   };
+
+  $('#cluster').change(function () {
+    if (this.value == "all") {
+      groupBubbles();
+    } else {
+      splitBubbles();
+    }
+  })
 
   // code to control dropdown
 
@@ -714,26 +722,26 @@ function display(error, data) {
 /*
  * Sets up the layout buttons to allow for toggling between view modes.
  */
-function setupButtons() {
-  d3.select('#toolbar')
-    .selectAll('.button')
-    .on('click', function () {
-      // Remove active class from all buttons
-      d3.selectAll('.button').classed('active', false);
-      // Find the button just clicked
-      var button = d3.select(this);
+// function setupButtons() {
+//   d3.select('#cluster')
+//     .selectAll('.button')
+//     .on('change', function () {
+//       // Remove active class from all buttons
+//       d3.selectAll('.button').classed('active', false);
+//       // Find the button just clicked
+//       var select = d3.select(this);
 
-      // Set it as the active button
-      button.classed('active', true);
+//       // // Set it as the active button
+//       // button.classed('active', true);
 
-      // Get the id of the button
-      var buttonId = button.attr('id');
+//       // Get the id of the button
+//       var selectId = select.attr('id');
 
-      // Toggle the bubble chart based on
-      // the currently clicked button.
-      myBubbleChart.toggleDisplay(buttonId);
-    });
-}
+//       // Toggle the bubble chart based on
+//       // the currently clicked button.
+//       myBubbleChart.toggleDisplay(buttonId);
+//     });
+// }
 
 /*
  * Helper function to convert a number into a string
@@ -756,17 +764,16 @@ function addCommas(nStr) {
 d3.csv('data/test.csv', display);
 
 // setup the buttons.
-setupButtons();
+//setupButtons();
 
 
 // once loaded, switch to timeline view
 
 function initialTransition () {
-  d3.select("#year").classed('active', true);
-  d3.select("#all").classed('active', false);
-  myBubbleChart.toggleDisplay("year");
+  $("#cluster").val('change').prop('selected', true);
+  //d3.select("#all").classed('active', false);
+  myBubbleChart.toggleDisplay("change");
   setTimeout(viewToolbar, 300);
-
 }
 
 // make tool bar visible once transitions have completed
@@ -777,60 +784,6 @@ function viewToolbar () {
 
 setTimeout(initialTransition, 2500);
 
-// set up dropdown
-
-var varState = "";
-
-// the .bubble method is not going to work because the bubbles do not have data associated with them once drawn
-
-// DRAFT CODE NOT CURRENTLY ACTIVE
-
-// function filterBubbles (varState) { // filter that can be used slightly differently each time
-
-//   if (varState === "All continents") {  //since All Continents will not be a variable in the data
-
-//     console.log("if");
-
-//     d3.csv('data/test.csv', display);
-//     setTimeout(initialTransition, 300);
-
-    
-//   }
-//   else {
-
-//     console.log("else");
-
-//         // var filteredData = d3.selectAll(".bubble").filter(function(d){
-//     //   return continent == [varState]; 
-//     // })
-//     // console.log(filteredData.length);
-
-//     // d3.csv("data/dummy-data-3.csv", function(data, varState) {
-//     //   filteredData = data.filter(function(row) {
-//     //     return row['continent'] == [varState]; 
-//     //   });
-
-//     //   console.log(filteredData.length, filteredData);
-
-//     //   display(error, filteredData);
-      
-//     // });
-    
-//   }
-
-// }
-
-// $("#dropdown").change(function() {
-
-//   varState = $(this).val();
-
-//   d3.selectAll("#bubble-chart svg").remove();
-
-//   console.log(varState);
-
-//   filterBubbles(varState);
-
-// })
 
 // reset dropdown on window reload
 

@@ -101,12 +101,9 @@ select {
     border-radius: 4px;
     outline:0px;
     width: 130px;
-    /* height: 40px; */
     font-family: "PT Sans", Arial; 
-    /* font-size: 14.5px;  */
     font-weight:bold;
     padding:2px; 
-    /* padding-left: 11px;  */
     -webkit-box-shadow: 2px 2px 6px rgba(102,102,102,0.2);
     -moz-box-shadow: 2px 2px 6px rgba(102,102,102,0.2);
     box-shadow: 2px 2px 6px rgba(102,102,102,0.2);
