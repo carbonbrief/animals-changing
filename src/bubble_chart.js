@@ -664,7 +664,7 @@ function bubbleChart() {
    * returned chart function). Allows the visualization to toggle
    * between "single group" and "split by year" modes.
    *
-   * displayName is expected to be a string and either 'year' or 'all'.
+   * displayName is expected to be a string and either 'change' or 'all'.
    */
 
   chart.toggleDisplay = function (displayName) {
