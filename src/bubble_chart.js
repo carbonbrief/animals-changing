@@ -347,6 +347,7 @@ function bubbleChart() {
     showChangeTitles();
     showChangeSubtitles();
     showChangeLine();
+    showKey();
 
     // @v4 Reset the 'y' force to draw the bubbles to their year centers
     simulation.force('y', d3.forceY().strength(forceStrength).y(nodePosY));
@@ -515,6 +516,62 @@ function bubbleChart() {
       .style("stroke-dasharray", ("4, 4"));
       console.log("transiton end");
     }
+
+  }
+
+  // function to show key once transitions have completed
+
+  function showKey () {
+
+    console.log("showkey");
+
+    // append to the same svg as the chart so that it scales with the chart
+
+    var bubblesKey = svg.append("g")
+        .attr('id', 'key');
+
+    bubblesKey.append("circle")
+    .attr('class', 'bubble-key')
+    .attr("cx", 85)
+    .attr("cy", 40)
+    .attr("r", 17);
+
+    bubblesKey.append("circle")
+    .attr('class', 'bubble-key')
+    .attr("cx", 205)
+    .attr("cy", 40)
+    .attr("r", 26);
+
+    // slightly inelegant way of adding text over multiple lines, still haven't found a simple fix
+
+    bubblesKey.append("text")
+    .attr("class", "key-text")
+    .attr("x", 20)
+    .attr("y", 35)
+    .attr("dy", "0em")
+    .text("single");
+
+    bubblesKey.append("text")
+    .attr("class", "key-text")
+    .attr("x", 20)
+    .attr("y", 35)
+    .attr("dy", "1.2em")
+    .text("species");
+
+    bubblesKey.append("text")
+    .attr("class", "key-text")
+    .attr("x", 125)
+    .attr("y", 35)
+    .attr("dy", "0em")
+    .text("multiple");
+
+    bubblesKey.append("text")
+    .attr("class", "key-text")
+    .attr("x", 125)
+    .attr("y", 35)
+    .attr("dy", "1.2em")
+    .text("species");
+
 
   }
 
@@ -775,7 +832,6 @@ function initialTransition () {
   //d3.select("#all").classed('active', false);
   myBubbleChart.toggleDisplay("change");
   setTimeout(viewToolbar, 300);
-  setTimeout(showKey, 300);
 }
 
 // make tool bar visible once transitions have completed
@@ -785,32 +841,6 @@ function viewToolbar () {
 }
 
 setTimeout(initialTransition, 2500);
-
-// function to show key once transitions have completed
-
-  function showKey () {
-
-    console.log("showkey");
-
-
-    var bubblesKey = d3.select('#bubble-chart')
-    .append("svg")
-    .append("g")
-    .attr('id', 'key');
-
-    bubblesKey.append("circle")
-    .attr('class', 'bubble-key')
-    .attr("cx", 40)
-    .attr("cy", 40)
-    .attr("r", 25);
-
-    bubblesKey.append("circle")
-    .attr('class', 'bubble-key')
-    .attr("cx", 100)
-    .attr("cy", 40)
-    .attr("r", 15);
-
-  }
 
 
 // reset dropdown on window reload
