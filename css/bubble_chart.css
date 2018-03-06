@@ -3,7 +3,7 @@
   height: 900px;
   clear: both;
   margin-bottom: 0px;
-  background: linear-gradient(rgba(161, 74, 123, 0.55), rgba(239, 198, 48, 0.58));
+  background: linear-gradient(rgba(161, 74, 123, 0.57), rgba(239, 198, 48, 0.60));
 }
 
 .change {
@@ -20,6 +20,7 @@
   fill: #ffffff;
   cursor: default;
   text-anchor: start;
+  background-color: #333333;
 }
 
 .change-line {
@@ -39,6 +40,7 @@
   /* since svg text fill not color */
   fill: #A14A7b;
   font-size: 12px;
+  pointer-events: none;
 }
 
 .bubble-key {

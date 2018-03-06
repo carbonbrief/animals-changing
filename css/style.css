@@ -54,7 +54,7 @@ a:hover {
 }
 
 header {
-    background-color: rgba(161, 74, 123, 0.55);
+    background-color: rgba(161, 74, 123, 0.57);
     width: inherit;
     padding: 20px;
     padding-bottom: 10px;
@@ -74,19 +74,6 @@ header {
     margin-top: 15px;
     margin-bottom: 0px;
     opacity: 0;
-}
-
-#key {
-    width: 200px;
-    height: 70px;
-    top: 200px;
-    left: 20px;
-}
-
-.bubble-key {
-    stroke: #A14A7b;
-    stroke-width: 2px;
-    fill: none;
 }
 
 select {
@@ -112,7 +99,7 @@ select {
     vertical-align: top;
     height: 130px;
     margin-top: 0px;
-    background-color: rgba(239, 198, 48, 0.65);
+    background-color: rgba(239, 198, 48, 0.67);
     width: 790px;
     padding: 20px;
 }
