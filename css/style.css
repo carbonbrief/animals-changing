@@ -76,25 +76,22 @@ header {
     opacity: 0;
 }
 
-.button {
-min-width: 130px;
-padding: 4px 5px;
-cursor: pointer;
-text-align: center;
-font-size: 13px;
-border: 1px solid #e0e0e0;
-text-decoration: none;
+#key {
+    width: 120px;
+    height: 70px;
+    top: 200px;
+    left: 20px;
 }
 
-.button.active {
-background: #A14A7b;
-color: #fff;
+.bubble-key {
+    stroke: #A14A7b;
+    stroke-width: 2px;
+    fill: none;
 }
 
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
     background: url(https://s3-eu-west-1.amazonaws.com/cbbranding/new+folder/arrow-for-map.png) 96% / 15% no-repeat rgba(255, 255, 255, 0.5);
     background-size: 20px 13px;
     border:0px;

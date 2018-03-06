@@ -235,6 +235,7 @@ function bubbleChart() {
     // Initially, their radius (r attribute) will be 0.
     // @v4 Selections are immutable, so lets capture the
     //  enter selection to apply our transtition to below.
+
     var bubblesE = bubbles.enter().append('circle')
       .classed('bubble', true)
       .style("fill", function(d) { return "url(#" + d.image + ")"})
@@ -319,7 +320,7 @@ function bubbleChart() {
 
   /*
    * Sets visualization in "single group mode".
-   * The year labels are hidden and the force layout
+   * The titles are hidden and the force layout
    * tick function is set to move all nodes to the
    * center of the visualization.
    */
@@ -401,7 +402,7 @@ function bubbleChart() {
       .text(function (d) { return d; });
   }
 
-  // function to add lines linking titles to bubbles
+  // function to add lines linking titles to bubbles....find way to condense this section? lots of repeated code
 
   function showChangeLine () {
 
@@ -428,6 +429,17 @@ function bubbleChart() {
     ]
 
     var line3Data = [
+      {
+        "x": width/3.1,
+        "y": height/5*3.7
+      },
+      {
+        "x": width/2.5,
+        "y": height/5*3.7
+      }
+    ]
+
+    var line4Data = [
       {
         "x": width/3.1,
         "y": height/5*4.4
@@ -477,6 +489,17 @@ function bubbleChart() {
       .attr("class", "change-line line-3")
       .merge(line1)
       .attr("d", lineFunction(line3Data))
+      .attr("fill", "none")
+      .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+      .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+
+    var line4 = svg.selectAll(".line-4")
+      .data([line4Data]);
+
+    line4.enter().append("path")
+      .attr("class", "change-line line-4")
+      .merge(line1)
+      .attr("d", lineFunction(line4Data))
       .attr("fill", "none")
       .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
       .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
@@ -662,7 +685,7 @@ function bubbleChart() {
   /*
    * Externally accessible function (this is attached to the
    * returned chart function). Allows the visualization to toggle
-   * between "single group" and "split by year" modes.
+   * between "single group" and "split by year" modes during the initial transition.
    *
    * displayName is expected to be a string and either 'change' or 'all'.
    */
@@ -674,6 +697,8 @@ function bubbleChart() {
       groupBubbles();
     }
   };
+
+  // function to control cluster dropdown
 
   $('#cluster').change(function () {
     if (this.value == "all") {
@@ -720,30 +745,6 @@ function display(error, data) {
 }
 
 /*
- * Sets up the layout buttons to allow for toggling between view modes.
- */
-// function setupButtons() {
-//   d3.select('#cluster')
-//     .selectAll('.button')
-//     .on('change', function () {
-//       // Remove active class from all buttons
-//       d3.selectAll('.button').classed('active', false);
-//       // Find the button just clicked
-//       var select = d3.select(this);
-
-//       // // Set it as the active button
-//       // button.classed('active', true);
-
-//       // Get the id of the button
-//       var selectId = select.attr('id');
-
-//       // Toggle the bubble chart based on
-//       // the currently clicked button.
-//       myBubbleChart.toggleDisplay(buttonId);
-//     });
-// }
-
-/*
  * Helper function to convert a number into a string
  * and add commas to it to improve presentation.
  */
@@ -774,6 +775,7 @@ function initialTransition () {
   //d3.select("#all").classed('active', false);
   myBubbleChart.toggleDisplay("change");
   setTimeout(viewToolbar, 300);
+  setTimeout(showKey, 300);
 }
 
 // make tool bar visible once transitions have completed
@@ -783,6 +785,32 @@ function viewToolbar () {
 }
 
 setTimeout(initialTransition, 2500);
+
+// function to show key once transitions have completed
+
+  function showKey () {
+
+    console.log("showkey");
+
+
+    var bubblesKey = d3.select('#bubble-chart')
+    .append("svg")
+    .append("g")
+    .attr('id', 'key');
+
+    bubblesKey.append("circle")
+    .attr('class', 'bubble-key')
+    .attr("cx", 40)
+    .attr("cy", 40)
+    .attr("r", 25);
+
+    bubblesKey.append("circle")
+    .attr('class', 'bubble-key')
+    .attr("cx", 100)
+    .attr("cy", 40)
+    .attr("r", 15);
+
+  }
 
 
 // reset dropdown on window reload
