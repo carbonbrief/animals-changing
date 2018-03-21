@@ -10,11 +10,12 @@ font-weight: bold;
 }
 
 h1 {
-font-family: PT Sans Narrow;
-font-weight: normal;
-font-size: 35px;
-color: #77395e;
-margin-bottom: 5px;
+    font-family: PT Sans Narrow;
+    font-weight: normal;
+    font-size: 34px;
+    color: #77395e;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 h2 {
@@ -57,7 +58,6 @@ header {
     background-color: rgba(161, 74, 123, 0.55);
     width: inherit;
     padding: 20px;
-    padding-bottom: 10px;
     width: 790px;
 }
 
@@ -74,6 +74,7 @@ header {
     margin-top: 15px;
     margin-bottom: 0px;
     opacity: 0;
+    padding-top: 10px;
 }
 
 select {
@@ -111,7 +112,7 @@ select {
 }
   
 #credit {
-    height: 140px;
+    height: 100px;
 }
 
 .footer p {

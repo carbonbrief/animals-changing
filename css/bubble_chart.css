@@ -42,7 +42,7 @@
 }
 
 .change-box {
-  fill-opacity: 0.15;
+  fill-opacity: 0.18;
 }
 
 .key-text {
@@ -115,7 +115,57 @@
 @media (max-width: 830px) {
   #bubble-chart {
     width: 100%;
+  }
+
+  header {
+    width: calc(100% - 40px);
+  }
+
+  .footer {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 800px) {
+  #bubble-chart {
     height: 850px;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer > div { 
+    display: inline-block; 
+    padding-right: 0px;
+  }
+  #credit {
+    width: calc(100% - 40px);
+  }
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 13px;
+  }
+  #bubble-chart {
+    height: 750px;
+  }
+  .footer {
+    height: 180px;
+  }
+  .tooltip {
+    max-width: 220px;
+  }
+  .tooltip_image {
+    width: 80px;
+  }
+  p {
+    font-size: 12px;
   }
 }
 
@@ -124,6 +174,54 @@
     display: inline-block; 
   }
   #bubble-chart {
-    height: 650px;
+    height: 700px;
+  }
+  h1 {
+    font-size: 27px;
+  }
+  h2 {
+    font-size: 15px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 12.5px;
+  }
+  .footer {
+    height: 160px;
+  }
+  .tooltip {
+    max-width: 200px;
+  }
+  .tooltip_image {
+    width: 60px;
+  }
+  p {
+    font-size: 11.5px;
+  }
+  #cb-logo {
+    background-size: 120px;
+  }
+}
+
+@media (max-width: 550px) {
+  #bubble-chart {
+    height: 600px;
+  }
+}
+
+@media (max-width: 450px) {
+  p {
+    font-size: 11px;
+  }
+  .tooltip {
+    max-width: 180px;
+  }
+  .tooltip_image {
+    width: 50px;
+  }
+  #bubble-chart {
+    height: 500px;
   }
 }
