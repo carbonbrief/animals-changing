@@ -588,13 +588,13 @@ function bubbleChart() {
     bubblesKey.append("circle")
     .attr('class', 'bubble-key')
     .attr("cx", 95)
-    .attr("cy", 40)
+    .attr("cy", 30)
     .attr("r", 17);
 
     bubblesKey.append("circle")
     .attr('class', 'bubble-key')
     .attr("cx", 215)
-    .attr("cy", 40)
+    .attr("cy", 30)
     .attr("r", 26);
 
     // slightly inelegant way of adding text over multiple lines, still haven't found a simple fix
@@ -602,28 +602,28 @@ function bubbleChart() {
     bubblesKey.append("text")
     .attr("class", "key-text")
     .attr("x", 30)
-    .attr("y", 35)
+    .attr("y", 25)
     .attr("dy", "0em")
     .text("single");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
     .attr("x", 30)
-    .attr("y", 35)
+    .attr("y", 25)
     .attr("dy", "1.2em")
     .text("species");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
     .attr("x", 135)
-    .attr("y", 35)
+    .attr("y", 25)
     .attr("dy", "0em")
     .text("multiple");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
     .attr("x", 135)
-    .attr("y", 35)
+    .attr("y", 25)
     .attr("dy", "1.2em")
     .text("species");
 

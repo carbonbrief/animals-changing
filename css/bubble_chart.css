@@ -3,7 +3,7 @@
   height: 900px;
   clear: both;
   margin-bottom: 0px;
-  background: linear-gradient(rgba(161, 74, 123, 0.55), rgba(239, 198, 48, 0.57));
+  background: linear-gradient(rgba(161, 74, 123, 0.54), rgba(239, 198, 48, 0.56));
 }
 
 .change {
@@ -32,7 +32,7 @@
 #key {
   width: 240px;
   height: 70px;
-  top: 200px;
+  top: 180px;
   left: 30px;
 }
 

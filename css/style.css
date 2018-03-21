@@ -23,6 +23,7 @@ h2 {
     font-family: PT Serif;
     font-weight: normal;
     font-size: 18px;
+    padding-bottom: 20px;
 }
 
 h3 {
@@ -55,7 +56,7 @@ a:hover {
 }
 
 header {
-    background-color: rgba(161, 74, 123, 0.55);
+    background-color: rgba(161, 74, 123, 0.54);
     width: inherit;
     padding: 20px;
     width: 790px;
@@ -100,7 +101,7 @@ select {
     vertical-align: top;
     height: 130px;
     margin-top: 0px;
-    background-color: rgba(239, 198, 48, 0.67);
+    background-color: rgba(239, 198, 48, 0.65);
     width: 790px;
     padding: 20px;
 }
