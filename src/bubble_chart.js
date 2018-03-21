@@ -2,7 +2,7 @@
  * instantiate a new bubble chart given a DOM element to display
  * it in and a dataset to visualize.
  *
- * Organization and style inspired by:
+ * Inspired by:
  * https://bost.ocks.org/mike/chart/
  * http://vallandingham.me/bubble_chart_v4/
  *
@@ -344,6 +344,7 @@ function bubbleChart() {
    * nodeCenter of their data's year.
    */
   function splitBubbles() {
+    showChangeBox();
     showChangeTitles();
     showChangeSubtitles();
     showChangeLine();
@@ -365,6 +366,60 @@ function bubbleChart() {
     svg.selectAll('.change').remove();
     svg.selectAll('.subtitle').remove();
     svg.selectAll('.change-line').remove();
+    svg.selectAll('.change-box').remove();
+  }
+
+  /*
+   * Shows size change title displays.
+  */
+
+  function showChangeBox() {
+
+    var changeBox = svg.append("g")
+    .attr('id', 'box-wrapper')
+    .attr("width", 400)
+    .attr("height", 200);
+
+    changeBox.append("rect")
+    .attr('class', 'change-box')
+    .attr("x", 30)
+    .attr("y", 115)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("width", 180)
+    .attr("height", 90)
+    .attr("fill", "#a14a7b");
+
+    changeBox.append("rect")
+    .attr('class', 'change-box')
+    .attr("x", 30)
+    .attr("y", 385)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("width", 215)
+    .attr("height", 90)
+    .attr("fill", "#a14a7b");
+
+    changeBox.append("rect")
+    .attr('class', 'change-box')
+    .attr("x", 30)
+    .attr("y", 605)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("width", 215)
+    .attr("height", 90)
+    .attr("fill", "#e08b1b");
+
+    changeBox.append("rect")
+    .attr('class', 'change-box')
+    .attr("x", 30)
+    .attr("y", 745)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("width", 180)
+    .attr("height", 90)
+    .attr("fill", "#e08b1b");
+
   }
 
   /*
