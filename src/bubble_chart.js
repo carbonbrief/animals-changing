@@ -249,9 +249,9 @@ function bubbleChart() {
       .on('mouseout', mouseout)
       .on('click', mouseclick)
       .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
 
     // drag actions
 
@@ -382,7 +382,7 @@ function bubbleChart() {
 
     changeBox.append("rect")
     .attr('class', 'change-box')
-    .attr("x", 30)
+    .attr("x", 40)
     .attr("y", 115)
     .attr("rx", 5)
     .attr("ry", 5)
@@ -392,7 +392,7 @@ function bubbleChart() {
 
     changeBox.append("rect")
     .attr('class', 'change-box')
-    .attr("x", 30)
+    .attr("x", 40)
     .attr("y", 385)
     .attr("rx", 5)
     .attr("ry", 5)
@@ -402,7 +402,7 @@ function bubbleChart() {
 
     changeBox.append("rect")
     .attr('class', 'change-box')
-    .attr("x", 30)
+    .attr("x", 40)
     .attr("y", 605)
     .attr("rx", 5)
     .attr("ry", 5)
@@ -412,7 +412,7 @@ function bubbleChart() {
 
     changeBox.append("rect")
     .attr('class', 'change-box')
-    .attr("x", 30)
+    .attr("x", 40)
     .attr("y", 745)
     .attr("rx", 5)
     .attr("ry", 5)
@@ -434,7 +434,7 @@ function bubbleChart() {
 
     changes.enter().append('text')
       .attr('class', 'change')
-      .attr('x', 40)
+      .attr('x', 50)
       .attr('y', function (d) { return changesTitleY[d]; })
       .attr('text-anchor', 'left')
       .text(function (d) { return d; });
@@ -452,7 +452,7 @@ function bubbleChart() {
 
     subtitles.enter().append('text')
       .attr('class', 'subtitle')
-      .attr('x', 40)
+      .attr('x', 50)
       .attr('y', function (d) { return changesSubtitleY[d]; })
       .attr('text-anchor', 'left')
       .text(function (d) { return d; });
@@ -464,18 +464,18 @@ function bubbleChart() {
 
     var line1Data = [
       {
-        "x": width/3.1,
-        "y": height/5*0.8
+        "x": width/3.7,
+        "y": height/5*0.9
       },
       {
-        "x": width/2.5,
-        "y": height/5*0.8
+        "x": width/2.55,
+        "y": height/5*0.9
       }
     ]
 
     var line2Data = [
       {
-        "x": width/3.1,
+        "x": width/3.2,
         "y": height/5*2.4
       },
       {
@@ -486,22 +486,22 @@ function bubbleChart() {
 
     var line3Data = [
       {
-        "x": width/3.1,
-        "y": height/5*3.7
+        "x": width/3.2,
+        "y": height/5*3.6
       },
       {
-        "x": width/2.5,
-        "y": height/5*3.7
+        "x": width/1.95,
+        "y": height/5*3.6
       }
     ]
 
     var line4Data = [
       {
-        "x": width/3.1,
+        "x": width/3.7,
         "y": height/5*4.4
       },
       {
-        "x": width/2.5,
+        "x": width/2.2,
         "y": height/5*4.4
       }
     ]
@@ -587,13 +587,13 @@ function bubbleChart() {
 
     bubblesKey.append("circle")
     .attr('class', 'bubble-key')
-    .attr("cx", 85)
+    .attr("cx", 95)
     .attr("cy", 40)
     .attr("r", 17);
 
     bubblesKey.append("circle")
     .attr('class', 'bubble-key')
-    .attr("cx", 205)
+    .attr("cx", 215)
     .attr("cy", 40)
     .attr("r", 26);
 
@@ -601,28 +601,28 @@ function bubbleChart() {
 
     bubblesKey.append("text")
     .attr("class", "key-text")
-    .attr("x", 20)
+    .attr("x", 30)
     .attr("y", 35)
     .attr("dy", "0em")
     .text("single");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
-    .attr("x", 20)
+    .attr("x", 30)
     .attr("y", 35)
     .attr("dy", "1.2em")
     .text("species");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
-    .attr("x", 125)
+    .attr("x", 135)
     .attr("y", 35)
     .attr("dy", "0em")
     .text("multiple");
 
     bubblesKey.append("text")
     .attr("class", "key-text")
-    .attr("x", 125)
+    .attr("x", 135)
     .attr("y", 35)
     .attr("dy", "1.2em")
     .text("species");

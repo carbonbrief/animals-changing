@@ -3,7 +3,7 @@
   height: 900px;
   clear: both;
   margin-bottom: 0px;
-  background: linear-gradient(rgba(161, 74, 123, 0.56), rgba(239, 198, 48, 0.58));
+  background: linear-gradient(rgba(161, 74, 123, 0.55), rgba(239, 198, 48, 0.57));
 }
 
 .change {
@@ -33,7 +33,7 @@
   width: 240px;
   height: 70px;
   top: 200px;
-  left: 20px;
+  left: 30px;
 }
 
 #box-wrapper {
@@ -42,7 +42,7 @@
 }
 
 .change-box {
-  fill-opacity: 0.1;
+  fill-opacity: 0.15;
 }
 
 .key-text {
