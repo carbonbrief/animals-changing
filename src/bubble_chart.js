@@ -876,9 +876,6 @@ function addCommas(nStr) {
 // Load the data.
 d3.csv('data/test.csv', display);
 
-// setup the buttons.
-//setupButtons();
-
 
 // once loaded, switch to timeline view
 
